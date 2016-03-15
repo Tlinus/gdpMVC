@@ -8,7 +8,7 @@ require_once "header_user.php";
         <div class="col-sm-9">
             <div id="app" class="row">
 
-                <h1 class="text-center">Projet</h1>
+                <h1 class="text-center"><?php echo $_SESSION['infos_projet_a_afficher']['titre'] ?></h1>
 
                 <div class="col-sm-6 adjust">
 

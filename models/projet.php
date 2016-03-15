@@ -47,20 +47,32 @@
 
 	}
 
-public function InfosProjets($projets, $bdd)
+function InfosProjets($projets)
 {
-	$infos = array();
-	foreach ($projets as $key) {
-		$projet_query 			= "SELECT * FROM projet
-									WHERE id = :id;";
-		$pdo_select				= $bdd->prepare($projet_query);
-		$pdo_select->bindValue(	':id',		$key['id_projet'],		PDO::PARAM_INT);
-		$pdo_select->execute();
-		$projet				= $pdo_select->fetchAll();
-		array_push($infos, $projets);
-	}
+	global $bdd;
+	if(is_array($projets)){
+		$infos = array();
+		foreach ($projets as $key) {
+			$projet_query 			= "SELECT * FROM projet
+										WHERE id = :id;";
+			$pdo_select				= $bdd->prepare($projet_query);
+			$pdo_select->bindValue(	':id',		$projets,		PDO::PARAM_INT);
+			$pdo_select->execute();
+			$projet				= $pdo_select->fetchAll();
+			array_push($infos, $projets);
+		}
 
-	return $infos; 
+		return $infos;
+	}
+	else{
+		$projet_query 			= "SELECT * FROM projet
+										WHERE id = :id;";
+			$pdo_select				= $bdd->prepare($projet_query);
+			$pdo_select->bindValue(	':id',		$projets,		PDO::PARAM_INT);
+			$pdo_select->execute();
+			$projet				= $pdo_select->fetch();
+			return $projet;
+	}
 }
 	
 

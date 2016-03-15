@@ -87,14 +87,14 @@ function getUtilisateursAssigneSurProjet($projet_id){
 	return $utilisateurs;
 }
 
-function getProjetDunUtilisateur($id){
-	$role_query			= "SELECT * FROM role
-						Where id_utilisateur = :id;";
+function getProjetsDunUtilisateur($id){
+	global $bdd;
+	$role_query					= "SELECT * FROM role Where id_utilisateur = :id;";
 	$pdo_select					= $bdd->prepare($role_query);
-	$pdo_select->bindValue(		':id',		$id,			PDO::PARAM_INT);
+	$pdo_select->bindValue		(':id',		$id,			PDO::PARAM_INT);
 	$pdo_select->execute();
-	$nbProjets 				= $pdo_select->rowCount();
-	return $idProjets				= $pdo_select->fetchAll();
+	$_SESSION['nbProjets']		= $pdo_select->rowCount();
+	$_SESSION['projets']		= $pdo_select->fetchAll();
 	
 }
 ?>
