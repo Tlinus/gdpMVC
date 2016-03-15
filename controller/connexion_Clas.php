@@ -15,12 +15,9 @@ class connexion
 		}
 	public function verif()
 		{
-			$requete = $this->bdd->prepare('SELECT * FROM utilisateur 
-											WHERE email = :email ');
-			$requete->execute(array(
-											':email' 	=> $this->email
-								));
-			$reponse = $requete->fetch();
+			require_once('./models/utilisateurs.php');
+			
+			$reponse = getPassword($this->email);
 
 			if($reponse)
 				{
@@ -42,7 +39,7 @@ class connexion
 		}
 	public function  session()
 		{
-			include_once('./models/utilisateurs.php');
+			require_once('./models/utilisateurs.php');
 			sessionOn($this->email, $this->password);
 			return 1;
 			

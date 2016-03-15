@@ -22,7 +22,7 @@ Class Index{
 
         	if ($verif == 'ok'){  // on verifie que les données ont bien été assimiler par la bdd
             	$connexion->session();
-            	header("refresh:0", $_SERVER['PHP_SELF']);
+            	$this->connected();
             }
             else{
             	$error=$verif;
@@ -35,6 +35,7 @@ Class Index{
 	}
 
 	public function connected(){
-		header('location: Interface');
+		include_once('./controller/home.php');
+		$page= new Home(); $page->index();
 	}
 }

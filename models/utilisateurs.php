@@ -1,5 +1,13 @@
 <?php
 include_once('./zOthers/BDD/connectbdd.php');
+function getPassword($email){
+	global $bdd;
+	$requete = $bdd->prepare('SELECT * FROM utilisateur 
+											WHERE email = :email ');
+	$requete->execute(array(':email' 	=> $email));
+
+	return $requete->fetch();
+}
 function getUtilisateur($utilisateur_id){
 	global $bdd;
 	$utilisateur_query			= " SELECT * FROM utilisateur
