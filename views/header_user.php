@@ -26,11 +26,11 @@
 
             <div class="col-sm-12">
                 <span class="glyphicon glyphicon-user"></span>
-                <h5>UserFirstName</h5>
-                <h4>UserLastName</h4>
+                <h5><?php echo($_SESSION['user']['utilisateur_prenom']) ?></h5>
+                <h4><?php echo($_SESSION['user']['utilisateur_nom']) ?></h4>
             </div>
             <div class="col-sm-12">
-                <a href=""><span class="glyphicon glyphicon-share"></span>Logout</a>
+                <a href="logout.php"><span class="glyphicon glyphicon-share"></span>Logout</a>
                 <hr>
             </div>
 

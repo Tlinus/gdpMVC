@@ -12,10 +12,10 @@ Class Home{
 	}
 
 	public function admin(){
-		
+		include_once('./views/chef.php');
 	}
 
 	public function user(){
-		
+		include_once('./views/user.php');
 	}
 }

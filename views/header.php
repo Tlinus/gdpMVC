@@ -26,11 +26,11 @@
 
             <div class="col-sm-12">
                 <span class="glyphicon glyphicon-user"></span>
-                <h5>UserFirstName</h5>
+                <h5><?php echo $user['utilisateur_id']; ?></h5>
                 <h4>UserLastName</h4>
             </div>
             <div class="col-sm-12">
-                <a href=""><span class="glyphicon glyphicon-share"></span>Logout</a>
+                <a href="logout.php"><span class="glyphicon glyphicon-share"></span>Logout</a>
                 <hr>
                 <button class="btn btn-success" type="submit">Create Projet</button>
                 <hr>

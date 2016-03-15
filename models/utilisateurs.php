@@ -1,28 +1,41 @@
 <?php
+include_once('./zOthers/BDD/connectbdd.php');
 function getUtilisateur($utilisateur_id){
-	$utilisateur_query			= " SELECT * FROM utilisateurs
+	global $bdd;
+	$utilisateur_query			= " SELECT * FROM utilisateur
 									WHERE id = :id ";
 
 	$pdo_select					= $bdd->prepare($utilisateur_query);
 	$pdo_select->bindValue		(':id', 		$utilisateur_id,		PDO::PARAM_INT);
 	$pdo_select->execute();
 	
-	$utilisateurs				= $pdo_select->fetchAll();
-
-	$utilisateur_id 				= $utilisateurs['id'];
-	$utilisateur_nom 				= $utilisateurs['nom'];
-	$utilisateur_prenom 			= $utilisateurs['prenom'];
-	$utilisateur_mdp 				= $utilisateurs['mdp'];
-	$utilisateur_email 				= $utilisateurs['email'];
-	$utilisateur_fonction 			= $utilisateurs['fonction'];
-	$utilisateur_application 		= $utilisateurs['application'];
-	$utilisateur_avatar 			= $utilisateurs['avatar'];
-	$utilisateur_last_connection 	= $utilisateurs['last_connection'];
-	$utilisateur_is_admin 			= $utilisateurs['is_admin'];
-
-	return $utilisateurs;
+	$utilisateurs				= $pdo_select->fetch();
+	 
+	$_SESSION['user'] =  [
+		'utilisateur_id'				=> $utilisateurs['id'],
+		'utilisateur_nom'				=> $utilisateurs['nom'],
+		'utilisateur_prenom'			=> $utilisateurs['prenom'],
+		'utilisateur_mdp' 				=> $utilisateurs['mdp'],
+		'utilisateur_email' 			=> $utilisateurs['email'],
+		'utilisateur_fonction' 			=> $utilisateurs['fonction'],
+		'utilisateur_application' 		=> $utilisateurs['application'],
+		'utilisateur_avatar' 			=> $utilisateurs['avatar'],
+		'utilisateur_is_admin' 			=> $utilisateurs['is_admin']
+	];
+	return 1;
 }
-
+function sessionOn($email, $password){
+			global $bdd;
+			$requete = $bdd->prepare('SELECT * FROM utilisateur WHERE email = :email AND mdp= :mdp');
+			$requete->execute(array(':email' => $email, ':mdp' => $password));
+			$requete = $requete->fetch();
+			$_SESSION['id'] = $requete['id'];
+			$_SESSION['isAdmin'] = $requete['is_admin'];
+			$_SESSION['mail'] =$requete['email'];
+			getUtilisateur($requete['id']);
+			return 1;
+			
+}
 function getToutUtilisateur(){
 	$utilisateur_query			= "SELECT * FROM utilisateur;";
 	

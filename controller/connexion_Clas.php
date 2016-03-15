@@ -42,12 +42,9 @@ class connexion
 		}
 	public function  session()
 		{
-			$requete = $this->bdd->prepare('SELECT * FROM utilisateur WHERE email = :email AND mdp= :mdp');
-			$requete->execute(array(':email' => $this->email, ':mdp' => $this->password));
-			$requete = $requete->fetch();
-			$_SESSION['id'] = $requete['id'];
-			$_SESSION['isAdmin'] = $requete['is_admin'];
-			$_SESSION['mail'] =$requete['email'];
+			include_once('./models/utilisateurs.php');
+			sessionOn($this->email, $this->password);
 			return 1;
+			
 		}
 }
