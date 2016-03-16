@@ -1,7 +1,0 @@
-instruction à l'attention de Bruno 
-
-A propos des views:
-	- pour les formulaires d'inscription et de connexion, faire un:
-	// if(isset($error)){echo $error} //
-	- tout les formulaires ont pour action la page actuelle (laissé blank);
-	
