@@ -25,7 +25,7 @@
         <div id="menu" class="col-sm-2 screen-adjust text-center">
 
             <div class="col-sm-12">
-                <span class="glyphicon glyphicon-user"></span>
+                <span class="glyphicon glyphicon-user"><img src='<?php echo( $_SESSION["user"]["utilisateur_avatar"]) ?> ' ></span>
                 <h5><?php echo($_SESSION['user']['utilisateur_prenom']) ?></h5>
                 <h4><?php echo($_SESSION['user']['utilisateur_nom']) ?></h4>
             </div>

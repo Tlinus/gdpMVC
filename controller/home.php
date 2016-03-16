@@ -5,7 +5,7 @@ Class Home{
 		if(!isset($_SESSION['id'])){
 			header('location: index.php');
 		}
-		if($_SESSION['isAdmin'] ==1){
+		if($_SESSION['isAdmin'] == 1){
 			$this->admin();
 		}
 		else{ $this->user();}
