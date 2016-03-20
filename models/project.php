@@ -15,7 +15,7 @@
 		}
 
 
-		public function newProject(){
+		public function addProject(){
 
 			$query =	"INSERT INTO projet
 						(titre, dead_line, createur)
@@ -50,7 +50,15 @@
 function InfosProjets($projets)
 {
 	global $bdd;
-	if(is_array($projets)){
+	if(is_null($projets)){
+		return $a = [
+		'id' => '0',
+		'titre' => 'Aucun projet à afficher',
+		'dead_line' => 'never',
+		'createur' => 'Administrator'
+		];
+	}
+	elseif(is_array($projets)){
 		$infos = array();
 		foreach ($projets as $key) {
 			$projet_query 			= "SELECT * FROM projet

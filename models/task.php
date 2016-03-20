@@ -49,22 +49,24 @@
 		}
 
 	}
-function infosTaches($projetId, $bdd){
+function infosTaches($projetId){
+	global $bdd;
 	$tache_query				= "SELECT * FROM tache 
 								   WHERE id_projet = :projet 
-								   AND sous_tache_id = 0;";
+								   AND is_sstache = 0;";
 	$pdo_select					= $bdd->prepare($tache_query);
 	$pdo_select->bindValue		(':projet', 		$projetId, 	 PDO::PARAM_INT);
 	$pdo_select->execute();
 	return $taches_principal			= $pdo_select->fetchAll();
 }
 
-function infosSousTache($idTacheMere, $bdd){
+function infosSousTache($idTacheMere){
+	global $bdd;
 	$sous_tache_query				= " SELECT * FROM tache 
-	  									WHERE sous_tache_id = :idtache ;";
-	  	$pdo_select					= $bdd->prepare($sous_tache_query); 
-	  	$pdo_select->bindValue		(':idtache', 		$idTacheMere, PDO::PARAM_INT);
-	  	$pdo_select->execute();
-	  	return $sous_taches				= $pdo_select->fetchAll();
+  									WHERE sous_tache_id = :idtache ;";
+  	$pdo_select					= $bdd->prepare($sous_tache_query); 
+  	$pdo_select->bindValue		(':idtache', 		$idTacheMere, PDO::PARAM_INT);
+  	$pdo_select->execute();
+  	return $sous_taches				= $pdo_select->fetchAll();
 
 }
