@@ -13,7 +13,9 @@ class ProjectController{
 	}
 
 	public function addProjet(){
-
+		$this->getModel();
+		$project = new projet($_POST['projectTitle'], $_POST['deadline']);
+		$project->addProject();
 	}
 	public function editProject(){
 
@@ -24,7 +26,6 @@ class ProjectController{
 	public function getForDisplayProject(){
 		$this->getModel();
 		$_SESSION['infos_projet_a_afficher'] = InfosProjets($this->id);
-		var_dump($_SESSION['infos_projet_a_afficher']);
 	}
 	public static function witchProject(){
 		/* On récupére les projets de l'utilisateur */

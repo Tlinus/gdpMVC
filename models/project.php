@@ -5,13 +5,13 @@
 		public $titre;
 		public $cdc;
 		public $deadline;
-		public $pdo;
+		global $bdd;
 
-		public function __construct  ($pdo, $titre, $deadline){
+		public function __construct  ($titre, $deadline){
 			$this->titre 	= htmlspecialchars($titre);
 			//$this->cdc 		= $cdc;
 			$this->deadline	= $deadline;
-			$this->pdo 		= $pdo;
+			$this->pdo 		= $bdd;
 		}
 
 
@@ -22,9 +22,9 @@
 						VALUES 
 						(:titre, :dead, :crea);";
 			$pdo_query = $this->pdo->prepare($query);
-			$pdo_query->bindValue(':titre',		$this->titre,					PDO::PARAM_STR);  
-			$pdo_query->bindValue(':dead',		$this->deadline, 				PDO::PARAM_INT);
-			$pdo_query->bindValue(':crea', 		$_SESSION['utilisateurId'], 	PDO::PARAM_INT);
+			$pdo_query->bindValue(':titre',		$this->titre,							PDO::PARAM_STR);  
+			$pdo_query->bindValue(':dead',		$this->deadline, 						PDO::PARAM_INT);
+			$pdo_query->bindValue(':crea', 		$_SESSION['user']['utilisateur_id'], 	PDO::PARAM_INT);
 			$pdo_query->execute();
 
 
@@ -42,6 +42,10 @@
 			$pdo_query->execute();
 
 			return $lastId;
+		}
+
+		public function deleteProjet(){
+			
 		}
 
 

@@ -6,6 +6,9 @@ Class Home{
 			header('location: index.php');
 		}
 		else{
+			if(isset($_POST)){
+				$this->postControl();
+			}
 			$this->definitionProjetAAfficher();
 		}
 	}
@@ -35,6 +38,17 @@ Class Home{
 			$task->getTask($_SESSION['id_projet_a_afficher']);
 			/* on appelle la vue */
 			$this->loadView();
+		}
+	}
+	public function postControl(){
+		if(isset($_POST['project'])){
+			if(isset($_POST['create'])){}
+		}
+		elseif (isset($_POST['task'])) {
+			# code...
+		}
+		elseif (isset($_POST['user'])) {
+			# code...
 		}
 	}
 }
