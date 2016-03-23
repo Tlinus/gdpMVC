@@ -13,9 +13,11 @@ class ProjectController{
 	}
 
 	public function addProjet(){
-		$this->getModel();
-		$project = new projet($_POST['projectTitle'], $_POST['deadline']);
-		$project->addProject();
+		getModel();
+		$project = new projet($_POST['titre'], $_POST['deadline']);
+		$_SESSION['id_projet_a_afficher'] = $project->newProject();
+		$this->id = $_SESSION['id_projet_a_afficher'];
+		return 1;
 	}
 	public function editProject(){
 
@@ -33,7 +35,7 @@ class ProjectController{
 		getProjetsDunUtilisateur($_SESSION['id']);
 
 		/* si l'utilisateur n'a pas de projet en cours */
-		if($_SESSION['nbProjets'] == 0){ $_SESSION['id_projet_a_afficher'] == null; }
+		if($_SESSION['nbProjets'] == 0){ $_SESSION['id_projet_a_afficher'] =0; }
 
 		/* si l'utilisateur n'a qu'un seul projet */
 		elseif(count($_SESSION['projets']) ==1){

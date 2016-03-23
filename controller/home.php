@@ -5,10 +5,10 @@ Class Home{
 		if(!isset($_SESSION['id'])){
 			header('location: index.php');
 		}
+		elseif(isset($_POST)){
+			$this->isTherePost();
+		}
 		else{
-			if(isset($_POST)){
-				$this->postControl();
-			}
 			$this->definitionProjetAAfficher();
 		}
 	}
@@ -21,6 +21,11 @@ Class Home{
 	
 	public function definitionProjetAAfficher(){
 		if(isset($_SESSION['infos_projet_a_afficher'])){
+			/* on récupére les taches du projet */
+			include_once('./controller/task.php');
+			$task = New taskController();
+			$task->getTask($_SESSION['id_projet_a_afficher']);
+			/* on appelle la vue */
 			$this->loadView();
 		}
 		else{
@@ -40,15 +45,38 @@ Class Home{
 			$this->loadView();
 		}
 	}
-	public function postControl(){
-		if(isset($_POST['project'])){
-			if(isset($_POST['create'])){}
-		}
-		elseif (isset($_POST['task'])) {
-			# code...
-		}
-		elseif (isset($_POST['user'])) {
-			# code...
-		}
+	public function isTherePost(){
+		switch($_POST['formulaire']){
+			case 'addTaskAdmin':
+				echo 'post 1';
+				return 0;
+			case 'addProjectAdmin':
+				include_once('./controller/project.php');
+				$project = new ProjectController(0);
+				$projet->addProjet;
+				$projet->getForDisplayProject();
+				return 0;
+			case 'updateProjectAdmin':
+				echo 'post 3';
+				return 0;
+			case 'updateTaskAdmin':
+				echo 'post 4'
+				return 0;
+			case 'addUserAdmin':
+				echo 'post 5';
+				return 0;
+			case 'updateUserAdmin';
+				echo 'post 6';
+				return 0;
+			case 'addRoleAdmin';
+				echo 'post 7';
+				return 0;
+			case 'updateRoleAdmin';
+				echo 'post 8';
+				return 0;
+			case 'updateDoneTaskUser';
+				echo 'post  9';
+				return 0;
+		}	
 	}
 }

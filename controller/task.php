@@ -4,18 +4,15 @@ Class taskController{
 	public function getModel(){
 		require_once('./models/task.php');
 	}
-
 	public function getTask($idProjet){
 		$this->getModel();
 		$_SESSION['Task'] = infosTaches($idProjet);
-
-		foreach ($_SESSION['Task'] as $key => $value) {
-			if(count(infosSousTache($value['id'])) != 0){
-				foreach (infosSousTache($value['id']) as $ky => $val) {
-					array_push($_SESSION['Task'], $val);
-				}
-			}	 
+		if(count(infosSousTache($value['id'])) != 0){
+			foreach ($_SESSION['Task'] as $key => $value) {
+					$_SESSION['Task'][$key][] = infosSousTache($value['id']);
+			}
 		}
+		
 	}
 
 	public function deleteTask($id_tache){

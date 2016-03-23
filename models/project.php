@@ -5,6 +5,7 @@
 		public $titre;
 		public $cdc;
 		public $deadline;
+		public $pdo;
 		global $bdd;
 
 		public function __construct  ($titre, $deadline){
