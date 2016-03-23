@@ -43,9 +43,23 @@ require_once "header_user.php";
                                         <div id="progress-bar" class="progress-bar progress-bar-success" role="progressbar"
                                              aria-valuenow="" aria-valuemin="0" aria-valuemax="100"
                                              style="width: 50%">
-
                                         </div>
                                     </div>
+                                    <div id="task">
+
+                                        <h3><input type="checkbox" name="done">&nbsp;<strong>Tâche 1</strong></h3>
+                                        <p><em><u>Detail :</u></em></p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae ipsum massa. Nulla mattis, erat in finibus molestie, erat magna efficitur metus, ac ornare lacus nibh nec velit.</p>
+                                        <hr>
+                                    </div>
+                                    <h3>Les sous-tâches:</h3>
+                                    <div id="miniTask">
+                                        <h4><input type="checkbox" name="done">&nbsp;<strong>Sous-Tâche 1</strong></h4>
+                                        <p><em><u>Detail :</u></em></p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae ipsum massa. Nulla mattis, erat in finibus molestie, erat magna efficitur metus, ac ornare lacus nibh nec velit.</p>
+                                        <hr>
+                                    </div>
+
                                     <div class="form-group">
 
                                         <form method="post" action="task.php">

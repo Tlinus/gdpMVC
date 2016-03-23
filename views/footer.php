@@ -66,40 +66,13 @@
                 <h3>Ajout Tâche</h3>
             </div>
             <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <h4>Titre</h4>
-                        <input class="form-control" type="text" name="title" placeholder="Titre de la tâche">
-                    </div>
-                    <div class="form-group">
-                        <h4>Commentaire</h4>
-                        <textarea class="form-control" name="comments" placeholder="Plus d'information sur la tâche"></textarea>
-                    </div>
-                    <hr>
-                    <div class="form-group">
-                        <h3>Sous-Tâche</h3>
-                        Activer
-                        <input type="checkbox" id="enabled">
-                    </div>
-                    <button class="btn btn-primary" id="addMiniTask">Ajout Sous-Tâche</button>
-                    <div class="form-group">
-                        <h4>Titre</h4>
-                        <input class="form-control disabled" disabled="disabled" type="text" name="title" placeholder="Titre de la tâche">
-                    </div>
-                    <div class="form-group">
-                        <h4>Commentaire</h4>
-                        <textarea class="form-control disabled" disabled="disabled" name="comments" placeholder="Plus d'information sur la tâche"></textarea>
-                    </div>
-                    <div class="mini-task"></div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-danger" data-dismiss="modal">Close</a>
-            </div>
+
+                <?php require_once("formulaire/FormTache.php");?>
+
         </div>
     </div>
 </div>
-
+</div>
 
 <div class="modal fade" id="seeUser" role="dialog">
     <div class="modal-dialog">
@@ -114,14 +87,12 @@
                 <h4><strong>Email:</strong> user@user.com</h4>
                 <h4><strong>Fonction:</strong> User</h4>
             </div>
-            <div class="modal-footer">
-                <a class="btn btn-primary">Exclure</a>
-                <a class="btn btn-danger" data-dismiss="modal">Close</a>
-            </div>
+
+            <?php require ("formulaire/ExclureUser.php");?>
+
         </div>
     </div>
 </div>
-
 
 <div class="modal fade" id="seeTask" role="dialog">
     <div class="modal-dialog">
@@ -130,32 +101,14 @@
                 <h3>Nom de tâche</h3>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    <h4>Titre</h4>
-                    <input class="form-control" type="text" name="title" placeholder="Titre de la tâche">
-                </div>
-                <div class="form-group">
-                    <h4>Commentaire</h4>
-                    <textarea class="form-control" name="comments" placeholder="Plus d'information sur la tâche"></textarea>
-                </div>
-                <hr>
-                <h3>Sous-Tâche</h3>
-                <div class="form-group">
-                    <h4>Titre</h4>
-                    <input class="form-control" type="text" name="title" placeholder="Titre de la tâche">
-                </div>
-                <div class="form-group">
-                    <h4>Commentaire</h4>
-                    <textarea class="form-control" name="comments" placeholder="Plus d'information sur la tâche"></textarea>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-primary">Modifier</a>
-                <a class="btn btn-danger" data-dismiss="modal">Close</a>
+
+                <?php include ("formulaire/FormTache.php"); ?>
+
             </div>
         </div>
     </div>
 </div>
+
 
 <div class="modal fade" id="userList" role="dialog">
     <div class="modal-dialog">
@@ -164,16 +117,9 @@
                 <h3>User List</h3>
             </div>
             <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Nom, Prénom" name="searchUser"/>
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-search"></i>
-                            </span>
-                        </div>
-                    </div>
-                </form>
+
+                <?php include ("formulaire/SearchUser.php"); ?>
+
             </div>
             <div class="modal-footer">
                 <a class="btn btn-danger" data-dismiss="modal">Close</a>
@@ -189,72 +135,24 @@
                 <h3>Create User</h3>
             </div>
             <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <h4>Prénom:</h4>
-                        <input class="form-control" type="text" name="firstname" placeholder="Prénom du User">
-                    </div>
-                    <div class="form-group">
-                        <h4>Nom:</h4>
-                        <input class="form-control" type="text" name="lastname" placeholder="Nom du User">
-                    </div>
-                    <div class="form-group">
-                        <h4>Email:</h4>
-                        <input class="form-control" type="email" name="email" placeholder="Email du User">
-                    </div>
-                    <div class="form-group">
-                        <h4>Mot de Passe:</h4>
-                        <input class="form-control" type="password" name="password" placeholder="Mot de passe du User">
-                    </div>
-                    <div class="form-group">
-                        <h4>Fonction:</h4>
-                        <input class="form-control" type="text" name="fonction" placeholder="Fonction du User">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-success">Modifier</a>
-                <a class="btn btn-danger" data-dismiss="modal">Close</a>
-            </div>
+
+                <?php include ("formulaire/FormUser.php");?>
+
         </div>
     </div>
 </div>
 
 
-<div class="modal fade" id="createUser" role="dialog">
+<div class="modal fade" id="editUser" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Create User</h3>
+                <h3>Edit User</h3>
             </div>
             <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <h4>Prénom:</h4>
-                        <input class="form-control" type="text" name="firstname" placeholder="Prénom du User">
-                    </div>
-                    <div class="form-group">
-                        <h4>Nom:</h4>
-                        <input class="form-control" type="text" name="lastname" placeholder="Nom du User">
-                    </div>
-                    <div class="form-group">
-                        <h4>Email:</h4>
-                        <input class="form-control" type="email" name="email" placeholder="Email du User">
-                    </div>
-                    <div class="form-group">
-                        <h4>Mot de Passe:</h4>
-                        <input class="form-control" type="password" name="password" placeholder="Mot de passe du User">
-                    </div>
-                    <div class="form-group">
-                        <h4>Fonction:</h4>
-                        <input class="form-control" type="text" name="fonction" placeholder="Fonction du User">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-success">Create</a>
-                <a class="btn btn-danger" data-dismiss="modal">Close</a>
-            </div>
+
+                <?php include ("formulaire/FormUser.php"); ?>
+
         </div>
     </div>
 </div>
@@ -284,7 +182,7 @@
     $(document).ready(function() {
         var max_fields      = 100; //maximum input boxes allowed
         var wrapper         = $(".mini-task"); //Fields wrapper
-        var add_button      = $("#addMiniTask"); //Add button ID
+        var add_button      = $(".addMiniTask"); //Add button ID
 
         var x = 1; //initlal text box count
         $(add_button).click(function(e){ //on add input button click
@@ -300,7 +198,7 @@
         })
     });
 
-    $('#enabled').click(function() {
+    $('.enabled').click(function() {
         $('.disabled').attr('disabled',! this.checked)
     });
 
