@@ -67,7 +67,7 @@
             </div>
             <div class="modal-body">
 
-                <?php require_once("formulaire/FormTache.php");?>
+                <?php include("formulaire/FormTache.php");?>
 
         </div>
     </div>
@@ -88,7 +88,7 @@
                 <h4><strong>Fonction:</strong> User</h4>
             </div>
 
-            <?php require ("formulaire/ExclureUser.php");?>
+            <?php include ("formulaire/ExclureUser.php");?>
 
         </div>
     </div>
