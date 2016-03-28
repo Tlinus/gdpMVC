@@ -1,0 +1,63 @@
+{% extends 'master.twig' %}
+
+{% block content %}
+
+    {% include 'components/ProjectBar.twig' %}
+
+    <div class="col-sm-9">
+        <div id="app" class="row">
+
+            <div class="col-sm-12">
+                <div class="row">
+
+                    {% include 'forms/CreateProjectForm.twig' %}
+
+            <div class="col-sm-6 adjust">
+
+                <div class="row">
+
+                    <div class="col-sm-12">
+
+                        {% include 'components/FilePanel.twig' %}
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-12">
+
+                        {% include 'components/chef/TaskPanel.twig' %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        {% include 'components/ChatPanel.twig' %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+ </div>
+</div>
+    {% include 'components/ChatBar.twig' %}
+
+{% endblock %}
+
+{% block modal%}
+
+    {% include 'modal/chef/include.twig' %}
+
+{% endblock %}
+
+

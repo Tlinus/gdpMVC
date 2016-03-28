@@ -46,7 +46,7 @@ Class Home{
 		}
 	}
 	public function isTherePost(){
-		switch($_POST['formulaire']){
+		switch($_POST['forms']){
 			case 'addTaskAdmin':
 				echo 'post 1';
 				return 0;

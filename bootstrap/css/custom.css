@@ -7,6 +7,11 @@ html,body
     overflow-x: hidden;
 }
 
+#login {
+    background-color: #4A90E2;
+    color: whitesmoke;
+}
+
 .icon-def {
     font-size: 5rem;
 }
@@ -50,6 +55,10 @@ html,body
     color: whitesmoke;
     background-color: #4A90E2;
     border-color: #4A90E2;
+}
+
+.float-right {
+    float: right;
 }
 
 .break {
@@ -145,12 +154,15 @@ html,body
     margin-bottom: 5%;
 }
 
-#tache p {
-    margin: 0;
+#miniTask {
+    padding: 5%
+}
+
+#tache  {
     word-wrap: break-word;
 }
 
-#chat p {
+#chat {
     word-wrap:break-word;
 }
 
