@@ -1,7 +1,7 @@
 <?php
 
 
-class connexion
+class ConnexionController
 {
 	private $password;
 	private	$email;
@@ -15,7 +15,7 @@ class connexion
 		}
 	public function verif()
 		{
-			require_once('./models/utilisateurs.php');
+			require_once('./models/utilisateurs_model.php');
 			
 			$reponse = getPassword($this->email);
 
@@ -39,7 +39,7 @@ class connexion
 		}
 	public function  session()
 		{
-			require_once('./models/utilisateurs.php');
+			require_once('./models/utilisateurs_model.php');
 			sessionOn($this->email, $this->password);
 			return 1;
 			

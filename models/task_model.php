@@ -1,9 +1,9 @@
 <?php
-	Class Tache{
+	Class TaskModel{
 
 		private $id;
 		private $projet;
-		private $sous_tache_id;
+		private $parent_tache_id;
 		private $is_sstache;
 		public $intitule;
 		public $deadline;
@@ -12,14 +12,14 @@
 		public $done;
  
 
-		public function __construct  ($pdo, $intitule, $deadline, $commentaire, $projet){
+		public function __construct  ( $intitule, $commentaire, $deadline, $projet){
 			$this->intitule 		= htmlspecialchars($intitule);
 			$this->commentaire		= htmlspecialchars($commentaire);
 			$this->deadline			= $deadline;
 			$this->projet			= $projet;
 			$this->pdo 				= $pdo;
-			$this->sous_tache_id	= 0;
-			$this->is_sstache		= 'NULL';
+			$this->parent_tache_id	= 0;
+			$this->is_sstache		= 0;
 		}
 
 
@@ -34,7 +34,7 @@
 			$pdo_query->bindValue(':intitule',			$this->intitule,		PDO::PARAM_STR);
 			$pdo_query->bindValue(':id_projet',			$this->projet,			PDO::PARAM_INT);  
 			$pdo_query->bindValue(':dead',				$this->deadline, 		PDO::PARAM_INT);
-			$pdo_query->bindValue(':sous_tache_id',		$this->sous_tache_id,	PDO::PARAM_INT);  
+			$pdo_query->bindValue(':sous_tache_id',		$this->parent_tache_id,	PDO::PARAM_INT);  
 			$pdo_query->bindValue(':is_sstache',		$this->is_sstache,		PDO::PARAM_INT);  
 			$pdo_query->execute();
 
@@ -43,8 +43,22 @@
 			return $this->id;
 		}
 
-		public function isSousTache($idSousTache){
-			$this->sous_tache_id	= $idSousTache;
+
+		public function deleteTask($id){
+			$query = 'DELETE * FROM tache WHERE id = :id';
+			$thisQuery = $this->pdo->prepare($query);
+			$thisQuery->bindValue(':id',			$id, 		PDO::PARAM_INT);
+			$thisQuery->execute();
+			return 1;
+		}
+
+		public static function deleteTasks($array){
+			foreach ($array as $key => $value) {
+				$this->deleteTask($value['id']);
+			}
+		}
+		public function isSousTache($idParentTache){
+			$this->parent_tache_id	= $idParentTache;
 			$this->is_sstache		= 1;
 		}
 
@@ -69,4 +83,13 @@ function infosSousTache($idTacheMere){
   	$pdo_select->execute();
   	return $sous_taches				= $pdo_select->fetchAll();
 
+}
+function TaskDone($id)
+{
+	global $bdd;
+	$query 				=' UPDATE task SET done = 1 WHERE id = :id;';
+	$pdo_update			= $bdd->prepare($query);
+	$pdo_update->bindValue		(':id', 			$id,		PDO::PARAM_INT);
+	$pdo_update->execute();
+	return 1
 }

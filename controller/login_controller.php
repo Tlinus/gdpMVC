@@ -1,8 +1,8 @@
 <?php 
 
-Class Index{
+Class LoginController{
 
-	public function index(){
+	public function LoginController(){
 		if(isset($_SESSION['id'])){
 			$this->connected();
 		}
@@ -14,28 +14,29 @@ Class Index{
 	public function unconnected(){
 		
 		if (isset($_POST['email']) AND isset($_POST['password']))	{  
-			require_once('./controller/Connexion_clas.php');
+			require_once('./controller/connexion_controller.php');
 			//on envoie les données à la class connexion
-       		$connexion = new connexion($_POST['email'], $_POST['password']);
+       		$connexion = new connexionController($_POST['email'], $_POST['password']);
 
         	$verif = $connexion->verif();
 
         	if ($verif == 'ok'){  // on verifie que les données ont bien été assimiler par la bdd
             	$connexion->session();
-            	$this->connected();
+            	header('location: index.php');
+
             }
             else{
             	$error=$verif;
-            	include_once('./views/login.php');
+            	include_once('./Views/login.php');
             }
         }
         else{
-        	include_once('./views/login.php');
+        	include_once('./Views/login.php');
         }            
 	}
 
 	public function connected(){
-		include_once('./controller/home.php');
-		$page= new Home(); $page->index();
+		include_once('./controller/home_controller.php');
+		$page= new HomeController(); $page->index();
 	}
 }

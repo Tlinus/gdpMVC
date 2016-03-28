@@ -1,7 +1,7 @@
 ﻿<?php
 // je ne t'ai pas commenter toutes les initialisation de variable je pense que t'auras compris...
 //include 'function.php';
-	class inscription
+	class inscriptionModel
 	{
 		private $fonction;
 		private	$email;
@@ -12,14 +12,14 @@
 		private $avatar;
 		public  $bdd;
 
-		public function __construct($fonction, $email, $mdp, $mdp2, $nom, $prenom, $avatar, $bdd) 
+		public function __construct($fonction, $email, $mdp, $mdp2, $nom, $prenom, $avatar ='') 
 		{
 			$fonction 	= htmlspecialchars($fonction);
 			$email 		= htmlspecialchars($email);
 			$nom 		= htmlspecialchars($nom);
 			$prenom 	= htmlspecialchars($prenom);
 			$avatar		= htmlspecialchars($avatar);
-
+			global $bdd;
 			
 			$this->fonction = $fonction;
 			$this->email 	= $email;
@@ -99,7 +99,20 @@
 				));
 				return 1;
 			}
-		
+		public function updateUser($id)
+			{
+				$requete = $this->bdd->prepare('UPDATE utilisateur (nom, prenom, email, fonction, avatar, mdp) SET (:nom, :prenom, :email, :fonction, :avatar, :mdp) WHERE id= :id');
+				$requete->execute(array(
+					':nom' => $this->nom,
+					':prenom' => $this->prenom,
+					':email' => $this->email,
+					':fonction' => $this->fonction,
+					':avatar' => $this->avatar,
+					':mdp' => $this->mdp,
+					':id' => $id
+				));
+				return 1;
+			}	
 		public function  session()
 			{
 				$_SESSION['utilisateurId'] = $this->bdd->lastInsertId();

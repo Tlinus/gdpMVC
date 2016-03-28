@@ -1,21 +1,34 @@
 <?php 
 	
-	Class projet{
+	Class ProjectModel{
 
 		public $titre;
 		public $cdc;
 		public $deadline;
 		public $pdo;
-		global $bdd;
+		
 
 		public function __construct  ($titre, $deadline){
 			$this->titre 	= htmlspecialchars($titre);
 			//$this->cdc 		= $cdc;
 			$this->deadline	= $deadline;
+			global $bdd;
 			$this->pdo 		= $bdd;
 		}
 
+		public function updateProjet($id){
+			$query ="UPDATE projet SET 
+			titre = :titre
+			dead_line = :deadline
+			WHERE id = :id ;";
+			$delete_query = $bdd->prepare($query);
+			$delete_query->bindValue(':titre',				$this->titre,			PDO::PARAM_STR);
+			$delete_query->bindValue(':deadline', 			$this->deadline, 		PDO::PARAM_STR);
+			$delete_query->bindValue(':id',					$id,					PDO::PARAM_INT);
+			$delete_query->execute();
 
+			return 1;
+		}
 		public function addProject(){
 
 			$query =	"INSERT INTO projet
@@ -45,9 +58,30 @@
 			return $lastId;
 		}
 
-		public function deleteProjet(){
-			
+		public function deleteProjet($id){
+			$query = "DELETE * FROM role WHERE id_projet = :id;";
+			$pdo_query = $this->pdo->prepare($query);
+			$pdo_query->bindValue(':id',		$id,							PDO::PARAM_INT); 
+			$pdo_query->execute();
+
+			$query = "SELECT * FROM tache where id_projet = :id;" ;
+			$pdo_query = $this->pdo->prepare($query);
+			$pdo_query->bindValue(':id',		$id,							PDO::PARAM_INT); 
+			$pdo_query->execute();
+			$taches = $pdo_query->fetchall();
+
+			require_once('models/taskModel.php');
+			foreach ($taches as $key => $value) {
+				TaskModel::deleteTask($value['id']);
+			}
+
+			$query = "DELETE * FROM projet WHERE id_projet = :id;";
+			$pdo_query = $this->pdo->prepare($query);
+			$pdo_query->bindValue(':id',		$id,							PDO::PARAM_INT); 
+			$pdo_query->execute();
 		}
+
+
 
 
 	}

@@ -3,13 +3,16 @@
 
 class ProjectController{
 	private $id;
+	private $title;
+	private $deadline;
+	private $allProjects;
 
 	public function __construct($id){
 		$this->id = $id;
 	}
 
 	public function getModel(){
-		include_once('./models/project.php');
+		include_once('./models/project_model.php');
 	}
 
 	public function addProjet(){
@@ -20,10 +23,15 @@ class ProjectController{
 		return 1;
 	}
 	public function editProject(){
-
+		getModel();
+		$project = new projet($_POST['titre'], $_POST['deadline']);
+		$_SESSION['id_projet_a_afficher'] = $project->updateProject($id);
+		return 1;
 	}
-	public function deleteProject(){
-
+	public function deleteProject($id){
+		getModel();
+		ProjectModel::deleteProject($id);
+		return 1;
 	}
 	public function getForDisplayProject(){
 		$this->getModel();
@@ -31,7 +39,7 @@ class ProjectController{
 	}
 	public static function witchProject(){
 		/* On récupére les projets de l'utilisateur */
-		require_once('./models/utilisateurs.php');
+		require_once('./models/utilisateurs_model.php');
 		getProjetsDunUtilisateur($_SESSION['id']);
 
 		/* si l'utilisateur n'a pas de projet en cours */
@@ -48,6 +56,7 @@ class ProjectController{
 			foreach ($_SESSION['projets'] as $key) {
 				array_push($a, $key['id_projet']);
 			}
+			$this->allProjects = $a;
 			$_SESSION['id_projet_a_afficher'] = max($a);
 		}
 	}
