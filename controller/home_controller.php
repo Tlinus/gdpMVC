@@ -1,6 +1,7 @@
 <?php 
 Class HomeController{
 
+
 	public function index(){
 		if(!isset($_SESSION['id'])){
 			header('location: logout.php');
@@ -14,9 +15,10 @@ Class HomeController{
 	}
 
 	public function loadView(){
-		if($_SESSION['isAdmin'] == 1){ include_once('./Views/chef.php');}
-		elseif ($_SESSION['isAdmin'] == 2) { include_once('./Views/admin.php');}
-		else{ include_once('./Views/user.php'); }
+		global $twig;
+		//if($_SESSION['isAdmin'] == 1){ $template = $twig->display('chef/chef.twig');}
+		//elseif ($_SESSION['isAdmin'] == 2) { $template = $twig->display('user/user.twig'); include_once('admin/admin.twig');}
+		//else{ $template = $twig->display('user/user.twig'); }
 	}
 	
 	public function definitionProjetAAfficher(){

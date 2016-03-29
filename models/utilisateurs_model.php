@@ -39,7 +39,7 @@ function sessionOn($email, $password){
 			$requete = $requete->fetch();
 			$_SESSION['id'] = $requete['id'];
 			$_SESSION['isAdmin'] = $requete['is_admin'];
-			$_SESSION['mail'] =$requete['email'];
+			$_SESSION['mail'] = $requete['email'];
 			getUtilisateur($requete['id']);
 			return 1;
 			

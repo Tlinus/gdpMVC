@@ -12,7 +12,7 @@ Class LoginController{
 	}
 
 	public function unconnected(){
-		
+		global $twig;
 		if (isset($_POST['email']) AND isset($_POST['password']))	{  
 			require_once('./controller/connexion_controller.php');
 			//on envoie les données à la class connexion
@@ -27,11 +27,12 @@ Class LoginController{
             }
             else{
             	$error=$verif;
-            	include_once('./Views/login.php');
+            	$template = $twig->display('login.twig', array('name' => 'Fabien'));
             }
         }
         else{
-        	include_once('./Views/login.php');
+			$template = $twig->display('login.twig', array('name' => 'Fabien'));
+
         }            
 	}
 

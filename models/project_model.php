@@ -89,7 +89,7 @@
 function InfosProjets($projets)
 {
 	global $bdd;
-	if(is_null($projets)){
+	if($projets == 0){
 		return $a = [
 		'id' => '0',
 		'titre' => 'Aucun projet à afficher',

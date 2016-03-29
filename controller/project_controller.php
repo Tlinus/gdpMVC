@@ -57,6 +57,7 @@ class ProjectController{
 				array_push($a, $key['id_projet']);
 			}
 			$this->allProjects = $a;
+			$_SESSION['id_des_projets_utilisateur'] = $a;
 			$_SESSION['id_projet_a_afficher'] = max($a);
 		}
 	}

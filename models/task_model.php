@@ -91,5 +91,5 @@ function TaskDone($id)
 	$pdo_update			= $bdd->prepare($query);
 	$pdo_update->bindValue		(':id', 			$id,		PDO::PARAM_INT);
 	$pdo_update->execute();
-	return 1
+	return 1;
 }

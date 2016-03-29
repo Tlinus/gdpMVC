@@ -5,7 +5,7 @@
 			$host='localhost';
 			$bd='gdp';
 			$user='root';
-			$password = "root";
+			$password = "";
 			
 			try
 				{
