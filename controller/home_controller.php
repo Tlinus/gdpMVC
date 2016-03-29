@@ -7,7 +7,7 @@ Class HomeController{
 			header('location: logout.php');
 		}
 		elseif(isset($_POST['formulaire'])){
-			$this->isTherePost();
+			$this->isTherePost();			
 		}
 		else{
 			$this->definitionProjetAAfficher();
@@ -16,9 +16,14 @@ Class HomeController{
 
 	public function loadView(){
 		global $twig;
-		//if($_SESSION['isAdmin'] == 1){ $template = $twig->display('chef/chef.twig');}
-		//elseif ($_SESSION['isAdmin'] == 2) { $template = $twig->display('user/user.twig'); include_once('admin/admin.twig');}
-		//else{ $template = $twig->display('user/user.twig'); }
+		if($_SESSION['isAdmin'] == 1){ 
+			if(isset($_POST['addProject'])){
+				$template = $twig->display('chef/chef_create.twig');
+			}
+			else{$template = $twig->display('chef/chef.twig');}
+		}
+		elseif ($_SESSION['isAdmin'] == 2) { $template = $twig->display('admin/admin.twig');}
+		else{ $template = $twig->display('user/user.twig'); }
 	}
 	
 	public function definitionProjetAAfficher(){
