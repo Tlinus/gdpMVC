@@ -50,9 +50,9 @@
 						(:user, :projet, :fct);";
 
 			$pdo_query = $this->pdo->prepare($query);
-			$pdo_query->bindValue(':user',		$_SESSION['utilisateurId'],		PDO::PARAM_INT);  
-			$pdo_query->bindValue(':projet',	$lastId, 						PDO::PARAM_INT);
-			$pdo_query->bindValue(':fct', 		"Chef de projet", 				PDO::PARAM_STR);
+			$pdo_query->bindValue(':user',		$_SESSION['user']['utilisateur_id'],		PDO::PARAM_INT);  
+			$pdo_query->bindValue(':projet',	$lastId, 									PDO::PARAM_INT);
+			$pdo_query->bindValue(':fct', 		"Chef de projet", 							PDO::PARAM_STR);
 			$pdo_query->execute();
 
 			return $lastId;

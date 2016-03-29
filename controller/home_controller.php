@@ -61,15 +61,16 @@ Class HomeController{
 				return 0;
 			case 'addProjectAdmin':
 				include_once('./controller/project_controller.php');
-				$project = new ProjectController($_POST['title'], $_POST['deadline']);
-				$projet->addProjet;
-				$projet->getForDisplayProject();
+				$project = new ProjectController(0);
+				$project->addProjet();
+				$project->getForDisplayProject();
 				return 0;
 			case 'updateProjectAdmin':
 				include_once('./controller/project_controller.php');
 				$project = new ProjectController($_POST['title'], $_POST['deadline']);
 				$projet->updateProject($_POST['idProject']);
 				$projet->getForDisplayProject();
+				$this->loadView();
 				return 0;
 			case 'updateTaskAdmin':
 				echo 'post 4';

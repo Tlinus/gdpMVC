@@ -16,15 +16,15 @@ class ProjectController{
 	}
 
 	public function addProjet(){
-		getModel();
-		$project = new projet($_POST['titre'], $_POST['deadline']);
-		$_SESSION['id_projet_a_afficher'] = $project->newProject();
+		$this->getModel();
+		$project = new ProjectModel($_POST['title'], $_POST['deadline']);
+		$_SESSION['id_projet_a_afficher'] = $project->addProject();
 		$this->id = $_SESSION['id_projet_a_afficher'];
 		return 1;
 	}
 	public function editProject(){
-		getModel();
-		$project = new projet($_POST['titre'], $_POST['deadline']);
+		$this->getModel();
+		$project = new ProjectModel($_POST['title'], $_POST['deadline']);
 		$_SESSION['id_projet_a_afficher'] = $project->updateProject($id);
 		return 1;
 	}
