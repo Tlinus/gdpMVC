@@ -1,9 +1,9 @@
 <?php
 
 session_start();
-include_once('./zOthers/BDD/connectbdd.php');
-include_once('./controller/login_controller.php');
-$page = new index();
+//include_once('./zOthers/BDD/connectbdd.php');
+//include_once('./controller/login_controller.php');
+//$page = new index();
 
 /**
  * With Composer and autoload
@@ -21,7 +21,7 @@ $twig = new Twig_Environment($loader);
  * Envoie à la vue par Twig
  */
 
-$template = $twig->display('admin/admin.twig', array('name' => 'Fabien'));
+$template = $twig->display('user/user.twig', array('name' => 'Fabien'));
 
 
 ?>

@@ -10,7 +10,9 @@
             <div class="col-sm-12">
                 <div class="row">
 
-                    {% include 'forms/CreateProjectForm.twig' %}
+                    {% embed 'forms/CreateProjectForm.twig' %}
+                    {% block hidden %}createProject{% endblock %}
+                    {% endembed %}
 
             <div class="col-sm-6 adjust">
 

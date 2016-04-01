@@ -1,4 +1,8 @@
 <div class="modal-body">
+
+    {# le hidden input nom changable selon le type de user #}
+    <input type="hidden" value="" name="{% block hidden %}{% endblock %}">
+
     <div class="form-group">
         <h4>Prénom:</h4>
         <input class="form-control" type="text" name="firstname" placeholder="Prénom du User">
@@ -26,6 +30,6 @@
 </div>
 
 <div class="modal-footer">
-    <input class="btn btn-success" type="submit" value="Create">
+    <input class="btn btn-success" type="submit" value="{% block button %}{% endblock %}">
     <a class="btn btn-danger" data-dismiss="modal">Close</a>
 </div>

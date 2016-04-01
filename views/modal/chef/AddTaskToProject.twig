@@ -6,7 +6,10 @@
             </div>
             <div class="modal-body">
 
-                {% include 'forms/TaskForm.twig' %}
+                {% embed 'forms/TaskForm.twig' %}
+                    {% block hidden %}addTask{% endblock %}
+                    {% block button %}Ajouter{% endblock %}
+                {% endembed %}
 
             </div>
         </div>

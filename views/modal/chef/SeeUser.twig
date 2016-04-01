@@ -12,7 +12,9 @@
                 <h4><strong>Fonction:</strong> User</h4>
             </div>
 
-            {% include 'forms/BanUserFromProject.twig' %}
+            {% embed 'forms/BanUserFromProject.twig' %}
+                {% block hidden %}id_user{% endblock %}
+            {% endembed %}
 
         </div>
     </div>

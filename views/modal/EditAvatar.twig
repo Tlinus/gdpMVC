@@ -7,13 +7,11 @@
             <div class="modal-body form-group">
 
                 <form id="modal" action='add_avatar.php' method='post'>
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="avatar" placeholder="Lien de la photo ici">
-                        <span class="input-group-btn">
-                        <button class="btn btn-secondary" type="submit">Go!</button>
-                        </span>
-                        <input type='hidden' name='id_user' value="">
-                    </div>
+
+                    {% embed 'forms/AvatarForm.twig' %}
+                        {% block hidden %}id_user{% endblock %}
+                    {% endembed %}
+
                 </form>
                 <hr>
                 <a class="btn btn-danger" data-dismiss="modal">Close</a>
