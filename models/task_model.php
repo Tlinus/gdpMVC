@@ -12,7 +12,7 @@
 		public $done;
  
 
-		public function __construct  ( $intitule, $commentaire, $deadline, $projet){
+		public function __construct  ( $intitule, $commentaire, $deadline, $projet, $id=0){
 			$this->intitule 		= htmlspecialchars($intitule);
 			$this->commentaire		= htmlspecialchars($commentaire);
 			$this->deadline			= $deadline;
@@ -42,7 +42,22 @@
 
 			return $this->id;
 		}
-
+		public function updateTask(){
+			$query =	"UPDATE tache SET
+			commentaire = :commentaire, intitule = :intitule, id_projet = :id_projet, dead_line = :dead, sous_tache_id = :sous_tache_id, is_sstache = :is_sstache 
+						WHERE id = :id ;";
+			
+			$pdo_query = $this->pdo->prepare($query);
+			$pdo_query->bindValue(':commentaire',		$this->commentaire,		PDO::PARAM_STR);  
+			$pdo_query->bindValue(':intitule',			$this->intitule,		PDO::PARAM_STR);
+			$pdo_query->bindValue(':id_projet',			$this->projet,			PDO::PARAM_INT);  
+			$pdo_query->bindValue(':dead',				$this->deadline, 		PDO::PARAM_INT);
+			$pdo_query->bindValue(':sous_tache_id',		$this->parent_tache_id,	PDO::PARAM_INT);  
+			$pdo_query->bindValue(':is_sstache',		$this->is_sstache,		PDO::PARAM_INT);  
+			$pdo_query->bindValue(':id',				$this->id,				PDO::PARAM_INT);
+			$pdo_query->execute();
+			return $this->id;
+		}
 
 		public function deleteTask($id){
 			$query = 'DELETE * FROM tache WHERE id = :id';

@@ -27,6 +27,7 @@ Class TaskController{
 		require_once('./models/task_model.php');
 	}
 	public static function getTask($idProjet){
+		if(isset($_SESSION['task'])){ unset($_SESSION['Task']);}
 		TaskController::getModel();
 		$_SESSION['Task'] = infosTaches($idProjet);
 		foreach ($_SESSION['Task'] as $key => $value) {
@@ -52,7 +53,7 @@ Class TaskController{
 	}
 
 	public static function deleteTask($id_tache){
-		getModel();
+		require_once('./models/task_model.php');
 		TaskModel::deleteTask($id_tache);
 	} 
 	public function isSousTache($idParentTache){
@@ -60,7 +61,10 @@ Class TaskController{
 			$this->is_sstache		= 1;
 		}
 	public function editTask(){
-
+		$this->getModel();
+		$task = New TaskModel($this->intitule, $this->commentaire, $this->deadline, $this->projet, $this->id);
+		$task->updateTask();
+		TaskController::getTask($_SESSION['id_projet_a_afficher']);
 	}
 	public function addMiniTask(){
 
