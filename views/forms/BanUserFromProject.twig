@@ -1,5 +1,8 @@
 <div class="modal-footer">
-    <input type="hidden">
+
+    {# le hidden input nom changable selon le type de user #}
+    <input type="hidden" value="" name="{% block hidden %}{% endblock %}">
+
     <input class="btn btn-primary" type="submit" value="Exclure">
     <a class="btn btn-danger" data-dismiss="modal">Close</a>
 </div>

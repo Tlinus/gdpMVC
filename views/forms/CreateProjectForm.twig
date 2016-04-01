@@ -14,6 +14,10 @@
     <div class="col-sm-12">
         <h3>Titre du projet</h3>
     </div>
+
+    {# le hidden input nom changable selon le type de user #}
+    <input type="hidden" value="" name="{% block hidden %}{% endblock %}">
+
     <div class="form-group col-sm-12">
         <input class="form-control" type="text" name="title" placeholder="Titre du projet">
     </div>

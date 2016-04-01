@@ -12,7 +12,7 @@
 @trigger_error('The Twig_Filter_Function class is deprecated since version 1.12 and will be removed in 2.0. Use Twig_SimpleFilter instead.', E_USER_DEPRECATED);
 
 /**
- * Represents a function template filter.
+ * Represents a function templates filter.
  *
  * Use Twig_SimpleFilter instead.
  *

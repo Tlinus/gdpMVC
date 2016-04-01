@@ -1435,17 +1435,17 @@ function twig_test_iterable($value)
 }
 
 /**
- * Renders a template.
+ * Renders a templates.
  *
  * @param Twig_Environment $env
  * @param array            $context
- * @param string|array     $template      The template to render or an array of templates to try consecutively
- * @param array            $variables     The variables to pass to the template
+ * @param string|array     $template      The templates to render or an array of templates to try consecutively
+ * @param array            $variables     The variables to pass to the templates
  * @param bool             $withContext
  * @param bool             $ignoreMissing Whether to ignore missing templates or not
- * @param bool             $sandboxed     Whether to sandbox the template or not
+ * @param bool             $sandboxed     Whether to sandbox the templates or not
  *
- * @return string The rendered template
+ * @return string The rendered templates
  */
 function twig_include(Twig_Environment $env, $context, $template, $variables = array(), $withContext = true, $ignoreMissing = false, $sandboxed = false)
 {
@@ -1483,13 +1483,13 @@ function twig_include(Twig_Environment $env, $context, $template, $variables = a
 }
 
 /**
- * Returns a template content without rendering it.
+ * Returns a templates content without rendering it.
  *
  * @param Twig_Environment $env
- * @param string           $name          The template name
+ * @param string           $name          The templates name
  * @param bool             $ignoreMissing Whether to ignore missing templates or not
  *
- * @return string The template source
+ * @return string The templates source
  */
 function twig_source(Twig_Environment $env, $name, $ignoreMissing = false)
 {

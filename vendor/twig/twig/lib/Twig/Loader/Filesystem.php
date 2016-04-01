@@ -10,7 +10,7 @@
  */
 
 /**
- * Loads template from the filesystem.
+ * Loads templates from the filesystem.
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
@@ -206,7 +206,7 @@ class Twig_Loader_Filesystem implements Twig_LoaderInterface, Twig_ExistsLoaderI
             }
         }
 
-        $this->errorCache[$name] = sprintf('Unable to find template "%s" (looked into: %s).', $name, implode(', ', $this->paths[$namespace]));
+        $this->errorCache[$name] = sprintf('Unable to find templates "%s" (looked into: %s).', $name, implode(', ', $this->paths[$namespace]));
 
         if (!$throw) {
             return false;
@@ -219,7 +219,7 @@ class Twig_Loader_Filesystem implements Twig_LoaderInterface, Twig_ExistsLoaderI
     {
         if (isset($name[0]) && '@' == $name[0]) {
             if (false === $pos = strpos($name, '/')) {
-                throw new Twig_Error_Loader(sprintf('Malformed namespaced template name "%s" (expecting "@namespace/template_name").', $name));
+                throw new Twig_Error_Loader(sprintf('Malformed namespaced templates name "%s" (expecting "@namespace/template_name").', $name));
             }
 
             $namespace = substr($name, 1, $pos - 1);
@@ -239,7 +239,7 @@ class Twig_Loader_Filesystem implements Twig_LoaderInterface, Twig_ExistsLoaderI
     protected function validateName($name)
     {
         if (false !== strpos($name, "\0")) {
-            throw new Twig_Error_Loader('A template name cannot contain NUL bytes.');
+            throw new Twig_Error_Loader('A templates name cannot contain NUL bytes.');
         }
 
         $name = ltrim($name, '/');
@@ -253,7 +253,7 @@ class Twig_Loader_Filesystem implements Twig_LoaderInterface, Twig_ExistsLoaderI
             }
 
             if ($level < 0) {
-                throw new Twig_Error_Loader(sprintf('Looks like you try to load a template outside configured directories (%s).', $name));
+                throw new Twig_Error_Loader(sprintf('Looks like you try to load a templates outside configured directories (%s).', $name));
             }
         }
     }

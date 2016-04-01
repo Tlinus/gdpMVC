@@ -10,7 +10,7 @@
  */
 
 /**
- * Represents a callable template test.
+ * Represents a callable templates test.
  *
  * @author Fabien Potencier <fabien@symfony.com>
  *
