@@ -59,12 +59,28 @@
 			return $this->id;
 		}
 
-		public function deleteTask($id){
-			$query = 'DELETE * FROM tache WHERE id = :id';
-			$thisQuery = $this->pdo->prepare($query);
-			$thisQuery->bindValue(':id',			$id, 		PDO::PARAM_INT);
-			$thisQuery->execute();
-			return 1;
+		public static function deleteTask($id){
+			// on séléctionne les sous tache qui ont pour tache mere celle qu'on supprime
+			$query = "SELECT * FROM tache where sous_tache_id = :id;";
+			$select_query = $bdd->prepare($query);
+			$select_query->bindValue(':id',		$_POST['id'],	PDO::PARAM_INT);
+			$select_query->execute();
+			$sousTaches = $select_query->fetchAll();
+			$sousTachesNb = $select_query->rowCount();
+
+			if($sousTachesNb > 0){
+				foreach ($sousTaches as $key) {
+					$query ="DELETE FROM tache WHERE id = :id ;";
+					$delete_query = $bdd->prepare($query);
+					$delete_query->bindValue(':id',		$key['id'],	PDO::PARAM_INT);
+					$delete_query->execute();
+				}
+			}
+
+			$query ="DELETE FROM tache WHERE id = :id ;";
+			$delete_query = $bdd->prepare($query);
+			$delete_query->bindValue(':id',		$_POST['id'],	PDO::PARAM_INT);
+			$delete_query->execute();
 		}
 
 		public static function deleteTasks($array){
@@ -103,6 +119,14 @@ function TaskDone($id)
 {
 	global $bdd;
 	$query 				=' UPDATE task SET done = 1 WHERE id = :id;';
+	$pdo_update			= $bdd->prepare($query);
+	$pdo_update->bindValue		(':id', 			$id,		PDO::PARAM_INT);
+	$pdo_update->execute();
+	return 1;
+}
+function TaskUndone($id){
+	global $bdd;
+	$query 				=' UPDATE task SET done = 0 WHERE id = :id;';
 	$pdo_update			= $bdd->prepare($query);
 	$pdo_update->bindValue		(':id', 			$id,		PDO::PARAM_INT);
 	$pdo_update->execute();

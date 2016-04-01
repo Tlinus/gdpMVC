@@ -1,5 +1,92 @@
 <?php
 include_once('./zOthers/BDD/connectbdd.php');
+Class UtilisateurModel{
+	private $utilisateur_id;
+	private $utilisateur_nom;
+	private $utilisateur_prenom;
+	private $utilisateur_mdp;
+	private $utilisateur_email;
+	private $utilisateur_fonction;
+	private $utilisateur_application;
+	private $utilisateur_avatar;
+	private $utilisateur_is_admin;
+	
+	public function __construct($id, $utilisateur_nom = '', $utilisateur_prenom ='', $utilisateur_mdp='', $utilisateur_email='', $utilisateur_fonction='', $utilisateur_application='', $utilisateur_avatar='', $utilisateur_is_admin=''){
+		$this->utilisateur_id = $id;
+		if($utilisateur_nom == ''){
+			$this->getInfosUtilisateur($utilisateur_id);
+		}
+		else{
+			$this->utilisateur_nom = $utilisateur_nom;
+			$this->utilisateur_prenom = $utilisateur_prenom;
+			$this->utilisateur_mdp = $utilisateur_mdp;
+			$this->utilisateur_email = $utilisateur_email;
+			$this->utilisateur_fonction = $utilisateur_fonction;
+			$this->utilisateur_application = $utilisateur_application;
+			$this->utilisateur_avatar = $utilisateur_avatar;
+			$this->utilisateur_is_admin = $utilisateur_is_admin;
+		}
+	}
+
+	public function getUtilisateur($utilisateur_id){
+		global $bdd;
+		$utilisateur_query			= " SELECT * FROM utilisateur
+										WHERE id = :id ";
+
+		$pdo_select					= $bdd->prepare($utilisateur_query);
+		$pdo_select->bindValue		(':id', 		$utilisateur_id,		PDO::PARAM_INT);
+		$pdo_select->execute();
+		$utilisateur				= $pdo_select->fetch();
+
+		$this->utilisateur_nom = $utilisateur['nom'];
+		$this->utilisateur_prenom = $utilisateur['prenom'];
+		$this->utilisateur_mdp = $utilisateur['mdp'];
+		$this->utilisateur_email = $utilisateur['email'];
+		$this->utilisateur_fonction = $utilisateur['fonction'];
+		$this->utilisateur_application = $utilisateur['application'];
+		$this->utilisateur_avatar = $utilisateur['avatar'];
+		$this->utilisateur_is_admin = $utilisateur['is_admin'];
+	}
+	public function addUser(){
+		$requete = $this->bdd->prepare('INSERT INTO utilisateur (nom, prenom, email, fonction, avatar, mdp, application, is_admin) VALUES (:nom, :prenom, :email, :fonction, :avatar, :mdp, :app :admin)');
+		$requete->execute(array(
+			':nom' => $this->nom,
+			':prenom' => $this->prenom,
+			':email' => $this->email,
+			':fonction' => $this->fonction,
+			':avatar' => $this->avatar,
+			':mdp' => $this->mdp,
+			':app' => $this->utilisateur_application,
+			':admin' => $this->utilisateur_is_admin
+		));
+	}
+
+	public function updateUser(){
+		$requete = $this->bdd->prepare('UPDATE  utilisateur SET nom = :nom, prenom =:prenom , email =:email, fonction = :fonction, avatar = :avatar, mdp =:mdp, application =:app, is_admin = :admin WHERE id = :is');
+		$requete->execute(array(
+			':nom' => $this->utilisateur_nom,
+			':prenom' => $this->utilisateur_prenom,
+			':email' => $this->utilisateur_email,
+			':fonction' => $this->utilisateur_fonction,
+			':avatar' => $this->utilisateur_avatar,
+			':mdp' => $this->utilisateur_mdp,
+			':app' => $this->utilisateur_application,
+			':admin' => $this->utilisateur_is_admin;
+			':id' => $this->id_utilisateur;
+		));
+	}
+
+	public function deleteUser(){
+		$query = "DELETE * FROM role WHERE id_utilisateur = :id;";
+		$pdo_query = $this->bdd->prepare($query);
+		$pdo_query->bindValue(':id',		$this->utilisateur_id,		PDO::PARAM_INT); 
+		$pdo_query->execute();
+
+		$query = $this->bdd->prepare("DELETE * FROM utilisateur WHERE id = :id");
+		$query->bindValue(':id', 			$this->utilisateur_id, 		PDO::PARAM_INT);
+		$query->execute();
+	}
+}
 function getPassword($email){
 	global $bdd;
 	$requete = $bdd->prepare('SELECT * FROM utilisateur 

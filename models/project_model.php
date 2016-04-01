@@ -64,7 +64,7 @@
 			$pdo_query->bindValue(':id',		$id,							PDO::PARAM_INT); 
 			$pdo_query->execute();
 
-			$query = "SELECT * FROM tache where id_projet = :id;" ;
+			$query = "SELECT * FROM tache where id_projet = :id  AND is_sstache = 0;" ;
 			$pdo_query = $this->pdo->prepare($query);
 			$pdo_query->bindValue(':id',		$id,							PDO::PARAM_INT); 
 			$pdo_query->execute();
@@ -80,9 +80,26 @@
 			$pdo_query->bindValue(':id',		$id,							PDO::PARAM_INT); 
 			$pdo_query->execute();
 		}
+		public static function deleteRole($idUser, $idProjet){ 
+			$query ="DELETE FROM role 
+			WHERE id_utilisateur = :idUser AND id_projet = :idProjet ;";
 
-
-
+			$delete_query = $bdd->prepare($query);
+			$delete_query->bindValue(':idUser',		$idUser,		PDO::PARAM_INT);
+			$delete_query->bindValue(':idProjet',	$idProjet,		PDO::PARAM_INT);
+			$delete_query->execute();
+		}
+		public function addRole($idProjet, $idUser, $fct){
+			$query= " INSERT INTO role
+			(id_utilisateur, id_projet, fonction_attribue)
+			VALUES
+			(:id, :projet, :fct);";
+			$delete_query = $bdd->prepare($query);
+			$delete_query->bindValue(':idUser',		$idUser,		PDO::PARAM_INT);
+			$delete_query->bindValue(':idProjet',	$idProjet,		PDO::PARAM_INT);
+			$delete_query->bindValue(':fct',	$fct,				PDO::PARAM_STR);
+			$delete_query->execute();
+		}
 
 	}
 
