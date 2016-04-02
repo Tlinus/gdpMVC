@@ -71,8 +71,8 @@ Class UtilisateurModel{
 			':avatar' => $this->utilisateur_avatar,
 			':mdp' => $this->utilisateur_mdp,
 			':app' => $this->utilisateur_application,
-			':admin' => $this->utilisateur_is_admin;
-			':id' => $this->id_utilisateur;
+			':admin' => $this->utilisateur_is_admin,
+			':id' => $this->id_utilisateur
 		));
 	}
 

@@ -40,7 +40,11 @@ class Twig_Extension_Core extends Twig_Extension
     {
         return $this->escapers;
     }
-
+    public function getGlobals() {
+        return array(
+            'session'   => $_SESSION,
+        ) ;
+    }
     /**
      * Sets the default format to be used by the date filter.
      *
