@@ -9,6 +9,8 @@
                 <form id="modal" action='add_avatar.php' method='post'>
 
                     {% embed 'forms/AvatarForm.twig' %}
+                        {% block method %}{% endblock %}
+                        {% block action %}{% endblock %}
                         {% block hidden %}id_user{% endblock %}
                     {% endembed %}
 

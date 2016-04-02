@@ -1,8 +1,11 @@
-<div class="modal-footer">
+<form method="{% block method %}post{% endblock %}" action="{% block action %}{% endblock %}">
+    <div class="modal-footer">
 
-    {# le hidden input nom changable selon le type de user #}
-    <input type="hidden" value="" name="{% block hidden %}{% endblock %}">
+        {# le hidden input nom changable selon le type de user #}
+        <input type="hidden" value="" name="{% block hidden %}{% endblock %}">
 
-    <input class="btn btn-primary" type="submit" value="Exclure">
-    <a class="btn btn-danger" data-dismiss="modal">Close</a>
-</div>
+        <input class="btn btn-primary" type="submit" value="Exclure">
+        <a class="btn btn-danger" data-dismiss="modal">Close</a>
+    </div>
+</form>
+

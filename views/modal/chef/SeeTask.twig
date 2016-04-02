@@ -6,6 +6,8 @@
             </div>
 
             {% embed 'forms/TaskForm.twig' %}
+                {% block method %}{% endblock %}
+                {% block action %}{% endblock %}
                 {% block hidden %}id_task{% endblock %}
                 {% block button %}Modifier{% endblock %}
             {% endembed %}
