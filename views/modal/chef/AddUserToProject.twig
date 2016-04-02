@@ -5,7 +5,6 @@
                 <h3>Ajout User</h3>
             </div>
             <div class="modal-body">
-                <form>
 
                     {% embed 'forms/SearchUserForm.twig' %}
                         {% block method %}{% endblock %}
@@ -13,7 +12,6 @@
                         {% block hidden %}id_user{% endblock %}
                     {% endembed %}
 
-                </form>
             </div>
             <div class="modal-footer">
                 <a class="btn btn-danger" data-dismiss="modal">Close</a>

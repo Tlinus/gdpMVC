@@ -6,15 +6,13 @@
             </div>
             <div class="modal-body form-group">
 
-                <form id="modal" action='add_avatar.php' method='post'>
-
                     {% embed 'forms/AvatarForm.twig' %}
                         {% block method %}{% endblock %}
                         {% block action %}{% endblock %}
                         {% block hidden %}id_user{% endblock %}
                     {% endembed %}
 
-                </form>
+
                 <hr>
                 <a class="btn btn-danger" data-dismiss="modal">Close</a>
             </div>
