@@ -5,10 +5,7 @@
                 <h3>Edit User</h3>
             </div>
 
-                {% embed 'forms/UserForm.twig' %}
-                    {% block hidden %}updateUserAdmin{% endblock %}
-                    {% block button %}Modifier{% endblock %}
-                {% endembed %}
+                {% include 'forms/UserForm.twig' %}
 
         </div>
     </div>

@@ -60,14 +60,14 @@ class Twig_Environment
      *
      *  * charset: The charset used by the templates (default to UTF-8).
      *
-     *  * base_template_class: The base templates class to use for generated
+     *  * base_template_class: The base template class to use for generated
      *                         templates (default to Twig_Template).
      *
      *  * cache: An absolute path where to store the compiled templates,
      *           a Twig_Cache_Interface implementation,
      *           or false to disable compilation cache (default).
      *
-     *  * auto_reload: Whether to reload the templates if the original source changed.
+     *  * auto_reload: Whether to reload the template if the original source changed.
      *                 If you don't provide the auto_reload option, it will be
      *                 determined automatically based on the debug value.
      *
@@ -78,8 +78,8 @@ class Twig_Environment
      *                  * false: disable auto-escaping
      *                  * true: equivalent to html
      *                  * html, js: set the autoescaping to one of the supported strategies
-     *                  * filename: set the autoescaping strategy based on the templates filename extension
-     *                  * PHP callback: a PHP callback that returns an escaping strategy based on the templates "filename"
+     *                  * filename: set the autoescaping strategy based on the template filename extension
+     *                  * PHP callback: a PHP callback that returns an escaping strategy based on the template "filename"
      *
      *  * optimizations: A flag that indicates which optimizations to apply
      *                   (default to -1 which means that all optimizations are enabled;
@@ -138,9 +138,9 @@ class Twig_Environment
     }
 
     /**
-     * Gets the base templates class for compiled templates.
+     * Gets the base template class for compiled templates.
      *
-     * @return string The base templates class name
+     * @return string The base template class name
      */
     public function getBaseTemplateClass()
     {
@@ -148,9 +148,9 @@ class Twig_Environment
     }
 
     /**
-     * Sets the base templates class for compiled templates.
+     * Sets the base template class for compiled templates.
      *
-     * @param string $class The base templates class name
+     * @param string $class The base template class name
      */
     public function setBaseTemplateClass($class)
     {
@@ -276,9 +276,9 @@ class Twig_Environment
     }
 
     /**
-     * Gets the cache filename for a given templates.
+     * Gets the cache filename for a given template.
      *
-     * @param string $name The templates name
+     * @param string $name The template name
      *
      * @return string|false The cache file name or false when caching is disabled
      *
@@ -294,18 +294,18 @@ class Twig_Environment
     }
 
     /**
-     * Gets the templates class associated with the given string.
+     * Gets the template class associated with the given string.
      *
-     * The generated templates class is based on the following parameters:
+     * The generated template class is based on the following parameters:
      *
-     *  * The cache key for the given templates;
+     *  * The cache key for the given template;
      *  * The currently enabled extensions;
      *  * Whether the Twig C extension is available or not.
      *
-     * @param string   $name  The name for which to calculate the templates class name
-     * @param int|null $index The index if it is an embedded templates
+     * @param string   $name  The name for which to calculate the template class name
+     * @param int|null $index The index if it is an embedded template
      *
-     * @return string The templates class name
+     * @return string The template class name
      */
     public function getTemplateClass($name, $index = null)
     {
@@ -317,9 +317,9 @@ class Twig_Environment
     }
 
     /**
-     * Gets the templates class prefix.
+     * Gets the template class prefix.
      *
-     * @return string The templates class prefix
+     * @return string The template class prefix
      *
      * @deprecated since 1.22 (to be removed in 2.0)
      */
@@ -331,14 +331,14 @@ class Twig_Environment
     }
 
     /**
-     * Renders a templates.
+     * Renders a template.
      *
-     * @param string $name    The templates name
-     * @param array  $context An array of parameters to pass to the templates
+     * @param string $name    The template name
+     * @param array  $context An array of parameters to pass to the template
      *
-     * @return string The rendered templates
+     * @return string The rendered template
      *
-     * @throws Twig_Error_Loader  When the templates cannot be found
+     * @throws Twig_Error_Loader  When the template cannot be found
      * @throws Twig_Error_Syntax  When an error occurred during compilation
      * @throws Twig_Error_Runtime When an error occurred during rendering
      */
@@ -348,12 +348,12 @@ class Twig_Environment
     }
 
     /**
-     * Displays a templates.
+     * Displays a template.
      *
-     * @param string $name    The templates name
-     * @param array  $context An array of parameters to pass to the templates
+     * @param string $name    The template name
+     * @param array  $context An array of parameters to pass to the template
      *
-     * @throws Twig_Error_Loader  When the templates cannot be found
+     * @throws Twig_Error_Loader  When the template cannot be found
      * @throws Twig_Error_Syntax  When an error occurred during compilation
      * @throws Twig_Error_Runtime When an error occurred during rendering
      */
@@ -363,14 +363,14 @@ class Twig_Environment
     }
 
     /**
-     * Loads a templates by name.
+     * Loads a template by name.
      *
-     * @param string $name  The templates name
-     * @param int    $index The index if it is an embedded templates
+     * @param string $name  The template name
+     * @param int    $index The index if it is an embedded template
      *
-     * @return Twig_TemplateInterface A templates instance representing the given templates name
+     * @return Twig_TemplateInterface A template instance representing the given template name
      *
-     * @throws Twig_Error_Loader When the templates cannot be found
+     * @throws Twig_Error_Loader When the template cannot be found
      * @throws Twig_Error_Syntax When an error occurred during compilation
      */
     public function loadTemplate($name, $index = null)
@@ -412,15 +412,15 @@ class Twig_Environment
     }
 
     /**
-     * Creates a templates from source.
+     * Creates a template from source.
      *
      * This method should not be used as a generic way to load templates.
      *
-     * @param string $template The templates name
+     * @param string $template The template name
      *
-     * @return Twig_Template A templates instance representing the given templates name
+     * @return Twig_Template A template instance representing the given template name
      *
-     * @throws Twig_Error_Loader When the templates cannot be found
+     * @throws Twig_Error_Loader When the template cannot be found
      * @throws Twig_Error_Syntax When an error occurred during compilation
      */
     public function createTemplate($template)
@@ -446,16 +446,16 @@ class Twig_Environment
     }
 
     /**
-     * Returns true if the templates is still fresh.
+     * Returns true if the template is still fresh.
      *
      * Besides checking the loader for freshness information,
      * this method also checks if the enabled extensions have
      * not changed.
      *
-     * @param string $name The templates name
-     * @param int    $time The last modification time of the cached templates
+     * @param string $name The template name
+     * @param int    $time The last modification time of the cached template
      *
-     * @return bool true if the templates is fresh, false otherwise
+     * @return bool true if the template is fresh, false otherwise
      */
     public function isTemplateFresh($name, $time)
     {
@@ -472,12 +472,12 @@ class Twig_Environment
     }
 
     /**
-     * Tries to load a templates consecutively from an array.
+     * Tries to load a template consecutively from an array.
      *
      * Similar to loadTemplate() but it also accepts Twig_TemplateInterface instances and an array
      * of templates where each is tried to be loaded.
      *
-     * @param string|Twig_Template|array $names A templates or an array of templates to try consecutively
+     * @param string|Twig_Template|array $names A template or an array of templates to try consecutively
      *
      * @return Twig_Template
      *
@@ -509,7 +509,7 @@ class Twig_Environment
     }
 
     /**
-     * Clears the internal templates cache.
+     * Clears the internal template cache.
      *
      * @deprecated since 1.18.3 (to be removed in 2.0)
      */
@@ -521,7 +521,7 @@ class Twig_Environment
     }
 
     /**
-     * Clears the templates cache files on the filesystem.
+     * Clears the template cache files on the filesystem.
      *
      * @deprecated since 1.22 (to be removed in 2.0)
      */
@@ -565,8 +565,8 @@ class Twig_Environment
     /**
      * Tokenizes a source code.
      *
-     * @param string $source The templates source code
-     * @param string $name   The templates name
+     * @param string $source The template source code
+     * @param string $name   The template name
      *
      * @return Twig_TokenStream A Twig_TokenStream instance
      *
@@ -652,10 +652,10 @@ class Twig_Environment
     }
 
     /**
-     * Compiles a templates source code.
+     * Compiles a template source code.
      *
-     * @param string $source The templates source code
-     * @param string $name   The templates name
+     * @param string $source The template source code
+     * @param string $name   The template name
      *
      * @return string The compiled PHP source code
      *
@@ -675,7 +675,7 @@ class Twig_Environment
             $e->setTemplateFile($name);
             throw $e;
         } catch (Exception $e) {
-            throw new Twig_Error_Syntax(sprintf('An exception has been thrown during the compilation of a templates ("%s").', $e->getMessage()), -1, $name, $e);
+            throw new Twig_Error_Syntax(sprintf('An exception has been thrown during the compilation of a template ("%s").', $e->getMessage()), -1, $name, $e);
         }
     }
 
@@ -704,7 +704,7 @@ class Twig_Environment
     }
 
     /**
-     * Sets the default templates charset.
+     * Sets the default template charset.
      *
      * @param string $charset The default charset
      */
@@ -714,7 +714,7 @@ class Twig_Environment
     }
 
     /**
-     * Gets the default templates charset.
+     * Gets the default template charset.
      *
      * @return string The default charset
      */
@@ -1157,7 +1157,7 @@ class Twig_Environment
     /**
      * Registers a Global.
      *
-     * New globals can be added before compiling or rendering a templates;
+     * New globals can be added before compiling or rendering a template;
      * but after, you can only update existing globals.
      *
      * @param string $name  The global name

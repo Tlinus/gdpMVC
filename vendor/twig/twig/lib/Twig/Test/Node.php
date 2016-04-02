@@ -12,7 +12,7 @@
 @trigger_error('The Twig_Test_Node class is deprecated since version 1.12 and will be removed in 2.0.', E_USER_DEPRECATED);
 
 /**
- * Represents a templates test as a Node.
+ * Represents a template test as a Node.
  *
  * @author Fabien Potencier <fabien@symfony.com>
  *

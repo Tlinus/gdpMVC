@@ -48,7 +48,7 @@ abstract class Twig_Tests_Profiler_Dumper_AbstractTest extends PHPUnit_Framework
 
     private function getIndexProfile(array $subProfiles = array())
     {
-        return $this->generateProfile('main', 1, true, 'templates', 'index.twig', $subProfiles);
+        return $this->generateProfile('main', 1, true, 'template', 'index.twig', $subProfiles);
     }
 
     private function getEmbeddedBlockProfile(array $subProfiles = array())
@@ -58,12 +58,12 @@ abstract class Twig_Tests_Profiler_Dumper_AbstractTest extends PHPUnit_Framework
 
     private function getEmbeddedTemplateProfile(array $subProfiles = array())
     {
-        return $this->generateProfile('main', 0.0001, true, 'templates', 'embedded.twig', $subProfiles);
+        return $this->generateProfile('main', 0.0001, true, 'template', 'embedded.twig', $subProfiles);
     }
 
     private function getIncludedTemplateProfile(array $subProfiles = array())
     {
-        return $this->generateProfile('main', 0.0001, true, 'templates', 'included.twig', $subProfiles);
+        return $this->generateProfile('main', 0.0001, true, 'template', 'included.twig', $subProfiles);
     }
 
     private function getMacroProfile(array $subProfiles = array())

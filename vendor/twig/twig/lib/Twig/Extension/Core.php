@@ -40,11 +40,7 @@ class Twig_Extension_Core extends Twig_Extension
     {
         return $this->escapers;
     }
-    public function getGlobals() {
-        return array(
-            'session'   => $_SESSION,
-        ) ;
-    }
+
     /**
      * Sets the default format to be used by the date filter.
      *
@@ -1435,17 +1431,17 @@ function twig_test_iterable($value)
 }
 
 /**
- * Renders a templates.
+ * Renders a template.
  *
  * @param Twig_Environment $env
  * @param array            $context
- * @param string|array     $template      The templates to render or an array of templates to try consecutively
- * @param array            $variables     The variables to pass to the templates
+ * @param string|array     $template      The template to render or an array of templates to try consecutively
+ * @param array            $variables     The variables to pass to the template
  * @param bool             $withContext
  * @param bool             $ignoreMissing Whether to ignore missing templates or not
- * @param bool             $sandboxed     Whether to sandbox the templates or not
+ * @param bool             $sandboxed     Whether to sandbox the template or not
  *
- * @return string The rendered templates
+ * @return string The rendered template
  */
 function twig_include(Twig_Environment $env, $context, $template, $variables = array(), $withContext = true, $ignoreMissing = false, $sandboxed = false)
 {
@@ -1483,13 +1479,13 @@ function twig_include(Twig_Environment $env, $context, $template, $variables = a
 }
 
 /**
- * Returns a templates content without rendering it.
+ * Returns a template content without rendering it.
  *
  * @param Twig_Environment $env
- * @param string           $name          The templates name
+ * @param string           $name          The template name
  * @param bool             $ignoreMissing Whether to ignore missing templates or not
  *
- * @return string The templates source
+ * @return string The template source
  */
 function twig_source(Twig_Environment $env, $name, $ignoreMissing = false)
 {

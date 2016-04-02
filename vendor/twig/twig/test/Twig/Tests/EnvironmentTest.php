@@ -58,7 +58,7 @@ class Twig_Tests_EnvironmentTest extends PHPUnit_Framework_TestCase
         $globals = $twig->getGlobals();
         $this->assertEquals('bar', $globals['foo']);
 
-        // globals can be modified after a templates has been loaded
+        // globals can be modified after a template has been loaded
         $twig = new Twig_Environment($this->getMock('Twig_LoaderInterface'));
         $twig->addGlobal('foo', 'foo');
         $twig->getGlobals();
@@ -76,7 +76,7 @@ class Twig_Tests_EnvironmentTest extends PHPUnit_Framework_TestCase
         $globals = $twig->getGlobals();
         $this->assertEquals('bar', $globals['foo']);
 
-        // globals can be modified after extensions and a templates has been loaded
+        // globals can be modified after extensions and a template has been loaded
         $twig = new Twig_Environment($loader = new Twig_Loader_Array(array('index' => '{{foo}}')));
         $twig->addGlobal('foo', 'foo');
         $twig->getGlobals();
@@ -93,7 +93,7 @@ class Twig_Tests_EnvironmentTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('bar', $template->render(array()));
 
         /* to be uncomment in Twig 2.0
-        // globals cannot be added after a templates has been loaded
+        // globals cannot be added after a template has been loaded
         $twig = new Twig_Environment($this->getMock('Twig_LoaderInterface'));
         $twig->addGlobal('foo', 'foo');
         $twig->getGlobals();
@@ -117,7 +117,7 @@ class Twig_Tests_EnvironmentTest extends PHPUnit_Framework_TestCase
             $this->assertFalse(array_key_exists('bar', $twig->getGlobals()));
         }
 
-        // globals cannot be added after extensions and a templates has been loaded
+        // globals cannot be added after extensions and a template has been loaded
         $twig = new Twig_Environment($this->getMock('Twig_LoaderInterface'));
         $twig->addGlobal('foo', 'foo');
         $twig->getGlobals();
@@ -130,7 +130,7 @@ class Twig_Tests_EnvironmentTest extends PHPUnit_Framework_TestCase
             $this->assertFalse(array_key_exists('bar', $twig->getGlobals()));
         }
 
-        // test adding globals after a templates has been loaded without call to getGlobals
+        // test adding globals after a template has been loaded without call to getGlobals
         $twig = new Twig_Environment($this->getMock('Twig_LoaderInterface'));
         $twig->loadTemplate('index');
         try {
@@ -165,7 +165,7 @@ class Twig_Tests_EnvironmentTest extends PHPUnit_Framework_TestCase
         $key = $cache->generateKey('index', $twig->getTemplateClass('index'));
         $cache->write($key, $twig->compileSource('{{ foo }}', 'index'));
 
-        // check that extensions won't be initialized when rendering a templates that is already in the cache
+        // check that extensions won't be initialized when rendering a template that is already in the cache
         $twig = $this
             ->getMockBuilder('Twig_Environment')
             ->setConstructorArgs(array($loader, $options))
@@ -175,7 +175,7 @@ class Twig_Tests_EnvironmentTest extends PHPUnit_Framework_TestCase
 
         $twig->expects($this->never())->method('initExtensions');
 
-        // render templates
+        // render template
         $output = $twig->render('index', array('foo' => 'bar'));
         $this->assertEquals('bar', $output);
 

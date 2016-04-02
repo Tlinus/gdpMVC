@@ -6,11 +6,14 @@
             </div>
             <div class="modal-body">
                 <form>
-
-                    {% embed 'forms/SearchUserForm.twig' %}
-                        {% block hidden %}id_user{% endblock %}
-                    {% endembed %}
-
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Nom, Prénom" name="searchUser"/>
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </span>
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
