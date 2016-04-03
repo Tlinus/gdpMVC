@@ -4,6 +4,6 @@
                         <span class="input-group-btn">
                         <button class="btn btn-secondary" type="submit">Go!</button>
                         </span>
-        <input type='hidden' name="{% block hidden %}{% endblock %}" value="">
+        <input type='hidden' name="{% block hidden %}{% endblock %}" value="{% block hiddenValue %}{% endblock %}">
     </div>
 </form>

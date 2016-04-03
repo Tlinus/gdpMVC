@@ -2,7 +2,7 @@
     <div class="modal-body">
 
         {# le hidden input nom changable selon le type de user #}
-        <input type="hidden" value="" name="{% block hidden %}{% endblock %}">
+        <input type="hidden" value="{% block hiddenValue %}{% endblock %}" name="{% block hidden %}{% endblock %}">
 
         <div class="form-group">
             <h4>Prénom:</h4>
