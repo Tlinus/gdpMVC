@@ -12,11 +12,23 @@
                 <h4><strong>Fonction:</strong> User</h4>
             </div>
 
-            {% embed 'forms/BanUserFromProject.twig' %}
+            {% embed 'forms/UserProfile.twig' %}
                 {% block method %}{% endblock %}
                 {% block action %}{% endblock %}
                 {% block hiddenValue %}{% endblock %}
                 {% block hidden %}id_user{% endblock %}
+                {% block buttons %}
+
+                    {% if admin %}
+                        <input class="btn btn-success" type="submit" value="Modifier" data-toggle="modal" data-target="#editUser">
+                        <input class="btn btn-warning" type="submit" value="Delete">
+                    {% endif %}
+
+                    {% if chef %}
+                        <input id="chefButton" class="btn btn-warning" type="submit" value="Exclure">
+                    {% endif %}
+
+                {% endblock %}
             {% endembed %}
 
         </div>

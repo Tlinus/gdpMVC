@@ -21,7 +21,7 @@ $twig = new Twig_Environment($loader);
  * Envoie à la vue par Twig
  */
 
-$template = $twig->display('user/user.twig', array('name' => 'Fabien'));
+$template = $twig->display('admin/admin.twig', array('admin' => true));
 
 
 ?>

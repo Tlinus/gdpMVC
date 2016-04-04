@@ -4,7 +4,7 @@
         {# le hidden input nom changable selon le type de user #}
         <input type="hidden" value="{% block hiddenValue %}{% endblock %}" name="{% block hidden %}{% endblock %}">
 
-        <input class="btn btn-primary" type="submit" value="Exclure">
+        {% block buttons %}{% endblock %}
         <a class="btn btn-danger" data-dismiss="modal">Close</a>
     </div>
 </form>

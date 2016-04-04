@@ -6,11 +6,20 @@
             </div>
 
                 {% embed 'forms/UserForm.twig' %}
-                    {% block method %}{% endblock %}
+                    {% block method %}post{% endblock %}
                     {% block action %}{% endblock %}
                     {% block hiddenValue %}{% endblock %}
                     {% block hidden %}updateUserAdmin{% endblock %}
-                    {% block button %}Modifier{% endblock %}
+                    {% block addInput %}
+                        <div class="form-group">
+                            <h4>Avatar:</h4>
+                            <input class="form-control" type="text" name="avatar" placeholder="Avatar du User">
+                        </div>
+                    {% endblock %}
+                    {% block addButton %}
+                        <input class="btn btn-success" type="submit" value="Modifier">
+                        <input class="btn btn-warning" type="submit" value="Delete">
+                    {% endblock %}
                 {% endembed %}
 
         </div>
