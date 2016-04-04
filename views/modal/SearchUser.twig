@@ -13,6 +13,15 @@
                     {% block hidden %}id_user{% endblock %}
                 {% endembed %}
 
+                {% if admin %}
+                    <p><a data-toggle="modal" data-target="#editUser" value="admin" href="">User 1</a></p>
+                {% endif %}
+
+                {% if chef %}
+                    <p><a id="chef" data-toggle="modal" data-target="#seeUser" value="chef" href="">User 1</a></p>
+                {% endif %}
+
+
             </div>
             <div class="modal-footer">
                 <a class="btn btn-danger" data-dismiss="modal">Close</a>

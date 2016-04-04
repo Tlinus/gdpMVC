@@ -28,10 +28,14 @@
             <h4>Fonction:</h4>
             <input class="form-control" type="text" name="fonction" placeholder="Fonction du User">
         </div>
+
+        {% block addInput %}{% endblock %}
+
     </div>
 
+
     <div class="modal-footer">
-        <input class="btn btn-success" type="submit" value="{% block button %}{% endblock %}">
+        {% block addButton %}{% endblock %}
         <a class="btn btn-danger" data-dismiss="modal">Close</a>
     </div>
 </form>
