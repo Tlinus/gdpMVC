@@ -43,13 +43,13 @@ Class TaskController{
 	}*/
 
 	public function addTask(){
-		getModel();
+		TaskController::getModel();
 		$newTask = New TaskModel($this->intitule, $this->commentaire, $this->deadline, $this->projet);
 		if(isset($_POST['isSousTache'])){
 			isSousTache($idParentTask);
 			$newTask->isSousTache($_POST['parentTask']);
 		}
-		$this->id = $newTask->newTache;
+		$this->id = $newTask->newTache();
 	}
 
 	public static function deleteTask($id_tache){

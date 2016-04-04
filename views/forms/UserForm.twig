@@ -1,31 +1,37 @@
-<div class="modal-body">
-    <div class="form-group">
-        <h4>Prénom:</h4>
-        <input class="form-control" type="text" name="firstname" placeholder="Prénom du User">
+<form method="{% block method %}post{% endblock %}" action="{% block action %}{% endblock %}">
+    <div class="modal-body">
+
+        {# le hidden input nom changable selon le type de user #}
+        <input type="hidden" value="{% block hiddenValue %}{% endblock %}" name="{% block hidden %}{% endblock %}">
+
+        <div class="form-group">
+            <h4>Prénom:</h4>
+            <input class="form-control" type="text" name="firstname" placeholder="Prénom du User">
+        </div>
+
+        <div class="form-group">
+            <h4>Nom:</h4>
+            <input class="form-control" type="text" name="lastname" placeholder="Nom du User">
+        </div>
+
+        <div class="form-group">
+            <h4>Email:</h4>
+            <input class="form-control" type="email" name="email" placeholder="Email du User">
+        </div>
+
+        <div class="form-group">
+            <h4>Mot de Passe:</h4>
+            <input class="form-control" type="password" name="password" placeholder="Mot de passe du User">
+        </div>
+
+        <div class="form-group">
+            <h4>Fonction:</h4>
+            <input class="form-control" type="text" name="fonction" placeholder="Fonction du User">
+        </div>
     </div>
 
-    <div class="form-group">
-        <h4>Nom:</h4>
-        <input class="form-control" type="text" name="lastname" placeholder="Nom du User">
+    <div class="modal-footer">
+        <input class="btn btn-success" type="submit" value="{% block button %}{% endblock %}">
+        <a class="btn btn-danger" data-dismiss="modal">Close</a>
     </div>
-
-    <div class="form-group">
-        <h4>Email:</h4>
-        <input class="form-control" type="email" name="email" placeholder="Email du User">
-    </div>
-
-    <div class="form-group">
-        <h4>Mot de Passe:</h4>
-        <input class="form-control" type="password" name="password" placeholder="Mot de passe du User">
-    </div>
-
-    <div class="form-group">
-        <h4>Fonction:</h4>
-        <input class="form-control" type="text" name="fonction" placeholder="Fonction du User">
-    </div>
-</div>
-
-<div class="modal-footer">
-    <input class="btn btn-success" type="submit" value="Create">
-    <a class="btn btn-danger" data-dismiss="modal">Close</a>
-</div>
+</form>

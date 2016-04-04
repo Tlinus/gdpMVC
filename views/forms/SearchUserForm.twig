@@ -1,8 +1,14 @@
-<div class="form-group">
-    <div class="input-group">
-        <input type="text" class="form-control" placeholder="Nom, Prénom" name="searchUser"/>
+<form method="{% block method %}post{% endblock %}" action="{% block action %}{% endblock %}">
+    <div class="form-group">
+        <div class="input-group">
+
+            {# le hidden input nom changable selon le type de user #}
+            <input type="hidden" value="{% block hiddenValue %}{% endblock %}" name="{% block hidden %}{% endblock %}">
+
+            <input type="text" class="form-control" placeholder="Nom, Prénom" name="searchUser"/>
         <span class="input-group-addon">
             <i class="glyphicon glyphicon-search"></i>
         </span>
+        </div>
     </div>
-</div>
+</form>

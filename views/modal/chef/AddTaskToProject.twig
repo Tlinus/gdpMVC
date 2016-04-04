@@ -6,7 +6,14 @@
             </div>
             <div class="modal-body">
 
-                {% include 'forms/TaskForm.twig' %}
+                {% embed 'forms/TaskForm.twig' %}
+                    {% block method %}post{% endblock %}
+                    {% set form_method = "POST" %}
+                    {% block action %}{% endblock %}
+                    {% block hiddenValue %}addTaskAdmin{% endblock %}
+                    {% block hidden %}formulaire{% endblock %}
+                    {% block button %}Ajouter{% endblock %}
+                {% endembed %}
 
             </div>
         </div>

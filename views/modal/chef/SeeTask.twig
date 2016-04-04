@@ -5,7 +5,13 @@
                 <h3>Nom de tâche</h3>
             </div>
 
-            {% include 'forms/TaskForm.twig' %}
+            {% embed 'forms/TaskForm.twig' %}
+                {% block method %}{% endblock %}
+                {% block action %}{% endblock %}
+                {% block hiddenValue %}{% endblock %}
+                {% block hidden %}id_task{% endblock %}
+                {% block button %}Modifier{% endblock %}
+            {% endembed %}
 
         </div>
     </div>

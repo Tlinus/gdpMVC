@@ -5,7 +5,13 @@
                 <h3>Create User</h3>
             </div>
 
-                {% include 'forms/UserForm.twig' %}
+                {% embed 'forms/UserForm.twig' %}
+                    {% block method %}post{% endblock %}
+                    {% block action %}{% endblock %}
+                    {% block hiddenValue %}addUserAdmin{% endblock %}
+                    {% block hidden %}formulaire{% endblock %}
+                    {% block button %}Ajouter{% endblock %}
+                {% endembed %}
 
         </div>
     </div>

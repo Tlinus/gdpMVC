@@ -1,20 +1,24 @@
-<form method ="post">
-<div class="col-sm-5">
+<form method="{% block method %}post{% endblock %}" action="{% block action %}{% endblock %}">
+    <div class="col-sm-5">
         <h1>
             <button class="btn btn-danger" type="submit">Delete Projet</button>
             <button class="btn btn-primary" type="submit">Ok</button>
         </h1>
     </div>
 
-<div class="col-sm-6">
-    <h1>Projet</h1>
-</div>
-<input type="hidden" name="formulaire" value ="addProjectAdmin">
+    <div class="col-sm-6">
+        <h1>Projet</h1>
+    </div>
+
     <div class="col-sm-12">
         <h3>Titre du projet</h3>
     </div>
+
+    {# le hidden input nom changable selon le type de user #}
+    <input type="hidden" value="{% block hiddenValue %}{% endblock %}" name="{% block hidden %}{% endblock %}">
+
     <div class="form-group col-sm-12">
-        <input class="form-control" type="text" name="title" placeholder="Titre du projet">
+        <input class="form-control" type="text" name="projetNom" placeholder="Titre du projet">
     </div>
 
     <div class="col-sm-12">
@@ -30,5 +34,4 @@
     <div class="form-group col-sm-12">
         <input class="form-control" type="datetime-local" name="deadline">
     </div>
-
 </form>

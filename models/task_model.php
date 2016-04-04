@@ -13,11 +13,12 @@
  
 
 		public function __construct  ( $intitule, $commentaire, $deadline, $projet, $id=0){
+			global $bdd;
 			$this->intitule 		= htmlspecialchars($intitule);
 			$this->commentaire		= htmlspecialchars($commentaire);
 			$this->deadline			= $deadline;
 			$this->projet			= $projet;
-			$this->pdo 				= $pdo;
+			$this->pdo 				= $bdd;
 			$this->parent_tache_id	= 0;
 			$this->is_sstache		= 0;
 		}

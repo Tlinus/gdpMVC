@@ -1,7 +1,9 @@
-<div class="input-group">
-    <input type="text" class="form-control" name="avatar" placeholder="Lien de la photo ici">
+<form method="{% block method %}post{% endblock %}" action="{% block action %}{% endblock %}">
+    <div class="input-group">
+        <input type="text" class="form-control" name="avatar" placeholder="Lien de la photo ici">
                         <span class="input-group-btn">
                         <button class="btn btn-secondary" type="submit">Go!</button>
                         </span>
-    <input type='hidden' name="{% block hidden %}{% endblock %}" value="">
-</div>
+        <input type='hidden' name="{% block hidden %}{% endblock %}" value="{% block hiddenValue %}{% endblock %}">
+    </div>
+</form>
