@@ -88,7 +88,7 @@
 		
 		public function enregistrement()
 			{
-				$requete = $this->bdd->prepare('INSERT INTO utilisateur (nom, prenom, email, fonction, avatar, mdp, last_connection) VALUES (:nom, :prenom, :email, :fonction, :avatar, :mdp, :last_connection)');
+				$requete = $this->bdd->prepare('INSERT INTO utilisateur (nom, prenom, email, fonction, avatar, mdp,  last_connection) VALUES (:nom, :prenom, :email, :fonction, :avatar, :mdp, :last_connection)');
 				$requete->execute(array(
 					':nom' => $this->nom,
 					':prenom' => $this->prenom,
