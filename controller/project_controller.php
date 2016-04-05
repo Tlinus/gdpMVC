@@ -17,20 +17,21 @@ class ProjectController{
 
 	public function addProjet(){
 		$this->getModel();
-		$project = new ProjectModel($_POST['title'], $_POST['deadline']);
+		$project = new ProjectModel(0, $_POST['title'], $_POST['deadline']);
 		$_SESSION['id_projet_a_afficher'] = $project->addProject();
 		$this->id = $_SESSION['id_projet_a_afficher'];
 		return 1;
 	}
 	public function editProject(){
 		$this->getModel();
-		$project = new ProjectModel($_POST['title'], $_POST['deadline']);
+		$project = new ProjectModel(0, $_POST['title'], $_POST['deadline']);
 		$_SESSION['id_projet_a_afficher'] = $project->updateProject($id);
 		return 1;
 	}
 	public function deleteProject($id){
-		getModel();
-		ProjectModel::deleteProject($id);
+		$this->getModel();
+		$project = new ProjectModel($_SESSION['id_projet_a_afficher']);
+		$project->deleteProject($id);
 		return 1;
 	}
 	public function getForDisplayProject(){

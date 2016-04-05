@@ -60,6 +60,12 @@ Class HomeController{
 				if(isset($_POST['idParentTask'])){ $task->isSousTache($_POST['idParentTask']);}
 				$task->addTask();
 				return 0;
+			case 'deleteProjectAdmin':
+				include_once('./controller/project_controller.php');
+				$project = new ProjectController($_SESSION['id_projet_a_afficher']);
+				$project->deleteProject($_SESSION['id_projet_a_afficher']);
+				$project->getForDisplayProject();
+				return 0;
 			case 'addProjectAdmin':
 				include_once('./controller/project_controller.php');
 				$project = new ProjectController(0);

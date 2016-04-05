@@ -61,10 +61,11 @@
 		}
 
 		public static function deleteTask($id){
+			global $bdd;
 			// on séléctionne les sous tache qui ont pour tache mere celle qu'on supprime
 			$query = "SELECT * FROM tache where sous_tache_id = :id;";
 			$select_query = $bdd->prepare($query);
-			$select_query->bindValue(':id',		$_POST['id'],	PDO::PARAM_INT);
+			$select_query->bindValue(':id',		$id,	PDO::PARAM_INT);
 			$select_query->execute();
 			$sousTaches = $select_query->fetchAll();
 			$sousTachesNb = $select_query->rowCount();
@@ -80,7 +81,7 @@
 
 			$query ="DELETE FROM tache WHERE id = :id ;";
 			$delete_query = $bdd->prepare($query);
-			$delete_query->bindValue(':id',		$_POST['id'],	PDO::PARAM_INT);
+			$delete_query->bindValue(':id',		$id,	PDO::PARAM_INT);
 			$delete_query->execute();
 		}
 

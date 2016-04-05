@@ -8,12 +8,19 @@
 		public $pdo;
 		
 
-		public function __construct  ($titre, $deadline){
-			$this->titre 	= htmlspecialchars($titre);
-			//$this->cdc 		= $cdc;
-			$this->deadline	= $deadline;
-			global $bdd;
-			$this->pdo 		= $bdd;
+		public function __construct  ($id=0,$titre="", $deadline=""	){
+			if($id==0){
+				$this->titre 	= htmlspecialchars($titre);
+				//$this->cdc 		= $cdc;
+				$this->deadline	= $deadline;
+				global $bdd;
+				$this->pdo 		= $bdd;
+			}
+			else{
+				$this->id = $id;
+				global $bdd;
+				$this->pdo 		= $bdd;
+			}
 		}
 
 		public function updateProjet($id){
@@ -32,13 +39,12 @@
 		public function addProject(){
 
 			$query =	"INSERT INTO projet
-						(titre, dead_line, createur)
+						(titre, dead_line)
 						VALUES 
-						(:titre, :dead, :crea);";
+						(:titre, :dead);";
 			$pdo_query = $this->pdo->prepare($query);
 			$pdo_query->bindValue(':titre',		$this->titre,							PDO::PARAM_STR);  
 			$pdo_query->bindValue(':dead',		$this->deadline, 						PDO::PARAM_INT);
-			$pdo_query->bindValue(':crea', 		$_SESSION['user']['utilisateur_id'], 	PDO::PARAM_INT);
 			$pdo_query->execute();
 
 
@@ -58,8 +64,8 @@
 			return $lastId;
 		}
 
-		public function deleteProjet($id){
-			$query = "DELETE * FROM role WHERE id_projet = :id;";
+		public function deleteProject($id){
+			$query = "DELETE  FROM role WHERE id_projet = :id;";
 			$pdo_query = $this->pdo->prepare($query);
 			$pdo_query->bindValue(':id',		$id,							PDO::PARAM_INT); 
 			$pdo_query->execute();
@@ -70,15 +76,18 @@
 			$pdo_query->execute();
 			$taches = $pdo_query->fetchall();
 
-			require_once('models/taskModel.php');
+			require_once('./models/task_model.php');
 			foreach ($taches as $key => $value) {
 				TaskModel::deleteTask($value['id']);
 			}
 
-			$query = "DELETE * FROM projet WHERE id_projet = :id;";
+			$query = "DELETE  FROM projet WHERE id = :id;";
 			$pdo_query = $this->pdo->prepare($query);
 			$pdo_query->bindValue(':id',		$id,							PDO::PARAM_INT); 
 			$pdo_query->execute();
+
+			unset($_SESSION['id_projet_a_afficher']);
+			unset($_SESSION['infos_projet_a_afficher']);
 		}
 		public static function deleteRole($idUser, $idProjet){ 
 			$query ="DELETE FROM role 
