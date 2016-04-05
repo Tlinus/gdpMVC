@@ -84,8 +84,8 @@ Class HomeController{
 				return 0;
 			case 'addUserAdmin':
 				include_once('./models/inscription_model.php');
-				$user = New InscriptionModel($_POST['fonction'], $_POST['email'], $_POST['pwd'], $_POST['pwd2'], $_POST['name'], $_POST['lastName'], $_POST['avatar']);
-				$ok = $user->verif;
+				$user = New InscriptionModel($_POST['fonction'], $_POST['email'], $_POST['password'], $_POST['password'], $_POST['firstname'], $_POST['lastname'], "localhost/new/zOthers/avatar.png");
+				$ok = $user->verif();
 				if($ok == 'ok'){
 					$user->enregistrement();
 				}

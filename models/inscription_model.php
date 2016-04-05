@@ -1,7 +1,7 @@
 ﻿<?php
 // je ne t'ai pas commenter toutes les initialisation de variable je pense que t'auras compris...
 //include 'function.php';
-	class inscriptionModel
+	class InscriptionModel
 	{
 		private $fonction;
 		private	$email;
@@ -88,14 +88,15 @@
 		
 		public function enregistrement()
 			{
-				$requete = $this->bdd->prepare('INSERT INTO utilisateur (nom, prenom, email, fonction, avatar, mdp) VALUES (:nom, :prenom, :email, :fonction, :avatar, :mdp)');
+				$requete = $this->bdd->prepare('INSERT INTO utilisateur (nom, prenom, email, fonction, avatar, mdp, last_connection) VALUES (:nom, :prenom, :email, :fonction, :avatar, :mdp, :last_connection)');
 				$requete->execute(array(
 					':nom' => $this->nom,
 					':prenom' => $this->prenom,
 					':email' => $this->email,
 					':fonction' => $this->fonction,
 					':avatar' => $this->avatar,
-					':mdp' => $this->mdp
+					':mdp' => $this->mdp,
+					':last_connection' => "2002-02-02 22:22:22"
 				));
 				return 1;
 			}
