@@ -3,9 +3,9 @@
 		{
 			$titre = 'Index du forum';
 			$host='localhost';
-			$bd='gdp';
+			$bd='file';
 			$user='root';
-			$password = "";
+			$password = "root";
 			
 			try
 				{
