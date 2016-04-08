@@ -58,12 +58,15 @@ Class HomeController{
 				include_once('./controller/task_controller.php');
 				if($_SESSION['id_projet_a_afficher'] === 0){ $_SESSION['error'] = 'Aucun projet en cours, impossible de rajouter une tache';}
 				else{
-					$task= new taskController($_POST['MainTitle'], $_POST['MainComments'], $_POST['MainDeadline'], $_SESSION['id_projet_a_afficher']);
+					$task= new taskController($_POST['mainTitle'], $_POST['mainComments'], $_POST['mainDeadline'], $_SESSION['id_projet_a_afficher']);
 					$task->addTask();
+					$idTacheMere = $task->getId();
 
-					foreach ($_POST as $key => $value) {
-						if (preg_match("/^title([0-9]{1,})$/", $key)) {
-							print_r($value);
+					$i =0; foreach ($_POST as $key => $value) {
+						if (preg_match("/^title([0-9]{1,})$/", $key)) { $i++;
+							$task= new taskController($_POST['title'.$i], $_POST['comments'.$i], $_POST['deadline'.$i], $_SESSION['id_projet_a_afficher']);
+							$task->isSousTache($idTacheMere);
+							$task->addTask();
 						}
 					}
 				}

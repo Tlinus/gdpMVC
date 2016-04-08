@@ -41,10 +41,12 @@ Class TaskController{
 		$this->getModel();
 		$this->instance = new taskModel($_POST['title'], $_POST['comments'], $_POST['deadline'], $_SESSION['id_projet_a_afficher']);
 	}*/
-
+	public function getId(){
+		return $this->id;
+	}
 	public function addTask(){
 		TaskController::getModel();
-		$newTask = New TaskModel($this->intitule, $this->commentaire, $this->deadline, $this->projet);
+		$newTask = New TaskModel($this->intitule, $this->commentaire, $this->deadline, $this->projet, $this->parent_tache_id, $this->is_sstache );
 		if(isset($_POST['isSousTache'])){
 			isSousTache($idParentTask);
 			$newTask->isSousTache($_POST['parentTask']);
