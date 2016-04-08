@@ -1,9 +1,8 @@
 <?php
 	function bdd() 
 		{
-			$titre = 'Index du forum';
 			$host='localhost';
-			$bd='gpd';
+			$bd='gdp';
 			$user='root';
 			$password = "root";
 			
