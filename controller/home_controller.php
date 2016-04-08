@@ -56,15 +56,19 @@ Class HomeController{
 		switch($_POST['formulaire']){
 			case 'addTaskAdmin':
 				include_once('./controller/task_controller.php');
-				$task= new taskController($_POST['title'], $_POST['comments'], $_POST['deadline'], $_SESSION['id_projet_a_afficher']);
-				if(isset($_POST['idParentTask'])){ $task->isSousTache($_POST['idParentTask']);}
-				$task->addTask();
+				if($_SESSION['id_projet_a_afficher'] ==0){ $_SESSION['error'] = 'Aucun projet en cours, impossible de rajouter une tache';}
+				else{
+					$task= new taskController($_POST['title'], $_POST['comments'], $_POST['deadline'], $_SESSION['id_projet_a_afficher']);
+					if(isset($_POST['idParentTask'])){ $task->isSousTache($_POST['idParentTask']);}
+					$task->addTask();	
+				}
 				return 0;
 			case 'deleteProjectAdmin':
 				include_once('./controller/project_controller.php');
 				$project = new ProjectController($_SESSION['id_projet_a_afficher']);
 				$project->deleteProject($_SESSION['id_projet_a_afficher']);
 				$project->getForDisplayProject();
+				$this->definitionProjetAAfficher();
 				return 0;
 			case 'addProjectAdmin':
 				include_once('./controller/project_controller.php');

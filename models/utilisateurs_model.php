@@ -25,6 +25,12 @@ Class UtilisateurModel{
 			$this->utilisateur_application = $utilisateur_application;
 			$this->utilisateur_avatar = $utilisateur_avatar;
 			$this->utilisateur_is_admin = $utilisateur_is_admin;
+			/*
+			foreach($data as $key => $value){
+				$attr = 'utilisateur_'.$key;
+				$this->$attr = $value;
+			}
+			*/
 		}
 	}
 
