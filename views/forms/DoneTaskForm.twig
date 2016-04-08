@@ -1,0 +1,27 @@
+<form method="{% block method %}post{% endblock %}" action="{% block action %}{% endblock %}">
+
+    <input type="hidden" value="{% block hiddenValue %}{% endblock %}" name="{% block hidden %}{% endblock %}">
+
+    <div id="task">
+        <h3><input id="main" disabled="disabled" type="checkbox" name="done" value="35">&nbsp;<strong>Tâche 1</strong></h3>
+        <p><em><u>Detail :</u></em></p>
+        <p></p>
+        <hr>
+    </div>
+    {% block miniTask %}
+        <h3>Les sous-tâches:</h3>
+        <div id="miniTask">
+            <h4><input class="second" type="checkbox" name="done" value="35">&nbsp;<strong>Sous-Tâche 1</strong></h4>
+            <p><em><u>Detail :</u></em></p>
+            <p></p>
+            <hr>
+        </div>
+    {% endblock %}
+
+    <div class="form-group">
+
+        <input type="hidden">
+        <input class="btn btn-success" type="submit" name="confirm" value="Confirm">
+
+    </div>
+</form>

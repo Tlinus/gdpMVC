@@ -4,7 +4,11 @@ session_start();
 require 'vendor/autoload.php';
 
 $loader = new Twig_Loader_Filesystem('views');
-$twig = new Twig_Environment($loader);
+$twig = new Twig_Environment($loader, array(
+    'debug' => true
+    ));
+$twig->addExtension(new Twig_Extension_Debug());
+
 include_once('./zOthers/BDD/connectbdd.php');
 include_once('./controller/login_controller.php');
 $page = new LoginController();

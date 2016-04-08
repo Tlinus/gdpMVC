@@ -11,7 +11,8 @@
                 <div class="row">
 
                     {% embed 'forms/CreateProjectForm.twig' %}
-                    {% block hidden %}createProject{% endblock %}
+                        {% block method %}post{% endblock %}
+                        {% block hidden %}addProject{% endblock %}
                     {% endembed %}
 
             <div class="col-sm-6 adjust">

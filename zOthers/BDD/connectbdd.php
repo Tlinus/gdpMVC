@@ -3,7 +3,11 @@
 		{
 			$titre = 'Index du forum';
 			$host='localhost';
+<<<<<<< Updated upstream
 			$bd='gdp';
+=======
+			$bd='gpd';
+>>>>>>> Stashed changes
 			$user='root';
 			$password = "root";
 			
