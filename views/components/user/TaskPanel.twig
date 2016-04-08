@@ -1,3 +1,6 @@
+{% for task in session.Task %}
+    {{ task.0 }}
+{% endfor %}
 <div id="tache" class="adjust-panel panel panel-default">
     <div class="panel-heading">
         <h1 class="text-center">Tâches</h1>
@@ -13,18 +16,18 @@
         <div id="task">
             <h3><input id="main" disabled="disabled" type="checkbox" name="done" value="35">&nbsp;<strong>Tâche 1</strong></h3>
             <p><em><u>Detail :</u></em></p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae ipsum massa. Nulla mattis, erat in finibus molestie, erat magna efficitur metus, ac ornare lacus nibh nec velit.</p>
+            <p></p>
             <hr>
         </div>
         <h3>Les sous-tâches:</h3>
         <div id="miniTask">
             <h4><input class="second" type="checkbox" name="done" value="35">&nbsp;<strong>Sous-Tâche 1</strong></h4>
             <p><em><u>Detail :</u></em></p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae ipsum massa. Nulla mattis, erat in finibus molestie, erat magna efficitur metus, ac ornare lacus nibh nec velit.</p>
+            <p></p>
             <hr>
             <h4><input class="second" type="checkbox" name="done" value="35">&nbsp;<strong>Sous-Tâche 2</strong></h4>
             <p><em><u>Detail :</u></em></p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae ipsum massa. Nulla mattis, erat in finibus molestie, erat magna efficitur metus, ac ornare lacus nibh nec velit.</p>
+            <p></p>
             <hr>
         </div>
 
