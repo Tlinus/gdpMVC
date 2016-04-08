@@ -3,7 +3,7 @@
 		{
 			$titre = 'Index du forum';
 			$host='localhost';
-			$bd='file';
+			$bd='gdp';
 			$user='root';
 			$password = "root";
 			
@@ -14,7 +14,7 @@
 				}
 			catch (PDOExeption $error) 
 				{
-					printf('Erreur: ' .$error->getMessage());
+					printf('Erreur: %s\n', $error->getMessage());
 					
 					$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 					exit(0);

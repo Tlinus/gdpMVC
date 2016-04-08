@@ -147,5 +147,4 @@ function InfosProjets($projets)
 			return $projet;
 	}
 }
-	
 

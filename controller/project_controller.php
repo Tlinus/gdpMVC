@@ -53,9 +53,12 @@ class ProjectController{
 
 		/* sinon l'utilisateur à plusieurs projets en cours, on prends alors le dernier creer par défaut */
 		else{
-			$a =[];
+			$a =[]; $i=0;
 			foreach ($_SESSION['projets'] as $key) {
 				array_push($a, $key['id_projet']);
+
+				$_SESSION['nameProjets'][$i] = idAndName($key['id_projet']);
+				$i++;
 			}
 			$_SESSION['id_des_projets_utilisateur'] = $a;
 			$_SESSION['id_projet_a_afficher'] = max($a);

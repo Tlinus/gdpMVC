@@ -190,4 +190,15 @@ function getProjetsDunUtilisateur($id){
 	$_SESSION['projets']		= $pdo_select->fetchAll();
 	
 }
+function idAndName($id){
+	global $bdd;
+	$projet_query 			= "SELECT id, titre FROM projet
+								WHERE id = :id;";
+	$pdo_select				= $bdd->prepare($projet_query);
+	$pdo_select->bindValue(	':id',		$id,		PDO::PARAM_INT);
+	$pdo_select->execute();
+	$projet				= $pdo_select->fetch();
+	return $projet;
+}
+
 ?>
