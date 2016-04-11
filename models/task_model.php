@@ -87,7 +87,7 @@
 
 		public static function deleteTasks($array){
 			foreach ($array as $key => $value) {
-				$this->deleteTask($value['id']);
+				self::deleteTask($value['id']);
 			}
 		}
 		public function isSousTache($idParentTache){

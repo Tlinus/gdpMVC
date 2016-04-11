@@ -2,21 +2,47 @@
 
     <input type="hidden" value="{% block hiddenValue %}{% endblock %}" name="{% block hidden %}{% endblock %}">
 
-    <div id="task">
-        <h3><input id="main" disabled="disabled" type="checkbox" name="done" value="35">&nbsp;<strong>Tâche 1</strong></h3>
-        <p><em><u>Detail :</u></em></p>
-        <p></p>
-        <hr>
-    </div>
-    {% block miniTask %}
-        <h3>Les sous-tâches:</h3>
-        <div id="miniTask">
-            <h4><input class="second" type="checkbox" name="done" value="35">&nbsp;<strong>Sous-Tâche 1</strong></h4>
-            <p><em><u>Detail :</u></em></p>
-            <p></p>
-            <hr>
+
+    {% for mainTask in session.Task %}
+
+        <div id="task">
+            {% if mainTask.8 == null %}
+                <h3><input class="mainAlone" type="checkbox" name="doneMain" value="{{ mainTask.id }}">&nbsp;<strong>{{ mainTask.intitule }}</strong></h3>
+                <p><em><u>Detail :</u></em></p>
+                <p>{{ mainTask.commentaire }}</p>
+                <hr>
+            {% else %}
+                <h3><input class="main" disabled="disabled" type="checkbox" name="doneMain" value="{{ mainTask.id }}">&nbsp;<strong>{{ mainTask.intitule }}</strong></h3>
+                <p><em><u>Detail :</u></em></p>
+                <p>{{ mainTask.commentaire }}</p>
+                <hr>
+            {% endif %}
         </div>
-    {% endblock %}
+
+        {% if mainTask.8 == true %}
+            <h3>Les sous-tâches:</h3>
+            <div id="miniTask">
+
+        {% for bridge in mainTask %}
+            {% for miniTask in bridge %}
+
+                {% if miniTask == true %}
+                            <input class="mainTaskId" type="hidden" name="mainTaskId" value="{{ miniTask.sous_tache_id }}">
+                            <h4><input class="second" type="checkbox" name="doneMini" value="{{ miniTask.id }}">&nbsp;<strong>{{ miniTask.intitule }}</strong></h4>
+                            <p><em><u>Detail :</u></em></p>
+                            <p>{{ miniTask.commentaire }}</p>
+                            <hr>
+                {% endif %}
+
+            {% endfor %}
+
+        {% endfor %}
+
+        </div>
+        {% endif %}
+
+    {% endfor %}
+
 
     <div class="form-group">
 

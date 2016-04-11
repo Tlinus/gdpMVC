@@ -1,7 +1,7 @@
 <?php
 
 	session_start();
-	require './zOthers/BDD/connectbdd.php';
+	require '../zOthers/BDD/connectbdd.php';
 
 
 	
