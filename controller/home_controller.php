@@ -20,8 +20,13 @@ Class HomeController{
 		if($_SESSION['isAdmin'] == 1){ 
 			if(isset($_POST['addProject'])){
 				$template = $twig->display('chef/chef_create.twig', $_SESSION);
+			}	
+			else{
+				include_once('./controller/project_controller.php');
+				$project = New ProjectController($_SESSION['id_projet_a_afficher']);
+				$project->infosForChef();
+				$template = $twig->display('chef/chef.twig', $_SESSION);
 			}
-			else{$template = $twig->display('chef/chef.twig', $_SESSION);}
 		}
 		elseif ($_SESSION['isAdmin'] == 2) { $template = $twig->display('admin/admin.twig', $_SESSION);}
 		else{ $template = $twig->display('user/user.twig', $_SESSION); }

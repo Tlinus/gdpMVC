@@ -2,7 +2,7 @@
 	function bdd() 
 		{
 			$host='localhost';
-			$bd ='gpd';
+			$bd ='gdp';
 			$user='root';
 			$password = "root";
 			

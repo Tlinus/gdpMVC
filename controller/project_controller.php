@@ -34,6 +34,12 @@ class ProjectController{
 		$project->deleteProject($id);
 		return 1;
 	}
+
+	public function infosForChef(){
+		include_once('./models/utilisateurs_model.php');
+		getUtilisateursAssigneSurProjet($_SESSION['id_projet_a_afficher']);
+		getUtilisateursNonAssigneSurLeProjet($_SESSION['id_projet_a_afficher']);
+	}
 	public function getForDisplayProject(){
 		$this->getModel();
 		$_SESSION['infos_projet_a_afficher'] = InfosProjets($this->id);

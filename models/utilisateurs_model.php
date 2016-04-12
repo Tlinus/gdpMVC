@@ -150,6 +150,7 @@ function getToutUtilisateur(){
 }
 
 function getUtilisateursNonAssigneSurLeProjet($projet_id){
+	global $bdd;
 	$utilisateurProjet_query	= " SELECT * 
 									FROM utilisateur 
 									WHERE id NOT IN (
@@ -158,15 +159,14 @@ function getUtilisateursNonAssigneSurLeProjet($projet_id){
 									WHERE id_projet = :id_projet);";	
 	
 	$pdo_select					= $bdd->prepare($utilisateurProjet_query);
-	$pdo_select->bindValue		(':id_projet', 		$Projet_id,		PDO::PARAM_INT);
+	$pdo_select->bindValue		(':id_projet', 		$projet_id,		PDO::PARAM_INT);
 	$pdo_select->execute();
 	
-	$utilisateursLibre= $pdo_select->fetchAll();
-
-	return $utilisateursLibre;
+	$_SESSION['utilisateursUnassigned'] = $pdo_select->fetchAll();
 }
 
 function getUtilisateursAssigneSurProjet($projet_id){
+	global $bdd;
 	$utilisateur_query			= " SELECT * FROM role 
 									INNER JOIN utilisateur
 									ON role.id_utilisateur = utilisateur.id
@@ -175,9 +175,7 @@ function getUtilisateursAssigneSurProjet($projet_id){
 	$pdo_select					= $bdd->prepare($utilisateur_query);
 	$pdo_select->bindValue		(':id_projet', 		$projet_id,		PDO::PARAM_INT);
 	$pdo_select->execute();
-	$utilisateurs				= $pdo_select->fetchAll();
-
-	return $utilisateurs;
+	$_SESSION['utilisateursAssignes']				= $pdo_select->fetchAll();
 }
 
 function getProjetsDunUtilisateur($id){

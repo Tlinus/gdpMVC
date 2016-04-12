@@ -53,4 +53,33 @@
 
 
 
- 
+¨Pour les utilisateurs assignés sur un projet : $_SESSION['utilisateursAssignes']
+    array (size=26)
+      'id_utilisateur' => string '7' (length=1)
+      0 => string '7' (length=1)
+      'id_projet' => string '49' (length=2)
+      1 => string '49' (length=2)
+      'fonction_attribue' => string 'Chef de projet' (length=14)
+      2 => string 'Chef de projet' (length=14)
+      'id' => string '7' (length=1)
+      3 => string '7' (length=1)
+      'nom' => string 'chef' (length=4)
+      4 => string 'chef' (length=4)
+      'prenom' => string 'chef' (length=4)
+      5 => string 'chef' (length=4)
+      'email' => string 'chef@chef.com' (length=13)
+      6 => string 'chef@chef.com' (length=13)
+      'fonction' => string 'chef' (length=4)
+      7 => string 'chef' (length=4)
+      'application' => null
+      8 => null
+      'avatar' => string '' (length=0)
+      9 => string '' (length=0)
+      'mdp' => string 'chef' (length=4)
+      10 => string 'chef' (length=4)
+      'is_admin' => string '1' (length=1)
+      11 => string '1' (length=1)
+      'last_connection' => string '0000-00-00 00:00:00' (length=19)
+      12 => string '0000-00-00 00:00:00' (length=19)
+
+Pour les utilisateurs non assignés sur le projet : $_SESSION['utilisateursUnassigned'] contient un array avec seulement toutes les infos utilisateur, sans le role ... 
