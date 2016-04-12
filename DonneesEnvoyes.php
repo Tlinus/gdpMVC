@@ -83,3 +83,5 @@
       12 => string '0000-00-00 00:00:00' (length=19)
 
 Pour les utilisateurs non assignés sur le projet : $_SESSION['utilisateursUnassigned'] contient un array avec seulement toutes les infos utilisateur, sans le role ... 
+
+POur les noms des projets: $_SESSION['nameProjets'] contient le nom et les id des projets sur lequel l'utilisateur est inscrit ;=)
