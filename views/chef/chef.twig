@@ -12,8 +12,7 @@
                 <form method="post">
                     <div class="col-sm-5">
                         <h1>
-                            {{ session.user.utilisateur_id }}
-                            <input type="hidden" name="formulaire" value="deleteProjectAdmin">
+                            <input type="hidden" name="deleteProjectAdmin" value="{{ session.id_projet_a_afficher }}">
                             <button class="btn btn-danger" type="submit">Delete Projet</button>
                         </h1>
                     </div>

@@ -9,8 +9,10 @@
     <title>Gestion de Projet</title>
 
     <!-- Bootstrap -->
-    <link href="views/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="views/bootstrap/css/custom.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/css/custom.css" rel="stylesheet">
+    <link href="bootstrap/css/jquery-ui.min.css" rel="stylesheet">
+    <link href="bootstrap/css/jquery-ui-timepicker-addon.min.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -34,11 +36,17 @@
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="views/bootstrap/js/jquery-1.11.3.min.js"></script>
+<script src="bootstrap/js/jquery-1.11.3.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="views/bootstrap/js/bootstrap.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="bootstrap/js/jquery-ui.min.js"></script>
+<script src="bootstrap/js/jquery-ui-sliderAccess.js"></script>
+<script src="bootstrap/js/jquery-ui-timepicker-addon.min.js"></script>
 <script>
 
+    $('.deadline').datetimepicker();
+
+    // screen adjust for panels
     $(".login-adjust").css("padding-top", $(window).height() * 0.25);
 
     var screen = $(window).height();
@@ -54,27 +62,31 @@
     $(".adjust-menu").css("min-height", $("#app").height());
     $(".adjust-panel").css("min-height", $(window).height($("#title").height()));
 
+    // add miniTask to form
     $(document).ready(function() {
         var max_fields      = 100; //maximum input boxes allowed
         var wrapper         = $(".mini-task"); //Fields wrapper
         var add_button      = $(".addMiniTask"); //Add button ID
+
 
         var x = 1; //initlal text box count
         $(add_button).click(function(e){ //on add input button click
             e.preventDefault();
             if(x < max_fields){ //max input box allowed
                 x++; //text box increment
+
+
                 $(wrapper).append(
                         '<div>'+
                         '<a href="#" class="close remove_field">&times;</a>'+
                         '<hr>' +
                         '<div class="form-group">' +
                         '<h4>Titre</h4> ' +
-                        '<input class="form-control disabled" disabled="disabled" type="text" name="title'+ x +'" placeholder="Titre de la tâche"> ' +
+                        '<input class="form-control disabled" disabled="disabled" type="text" name="title'+ x +'" placeholder="Titre de la tâche" value=""> ' +
                         '</div> ' +
                         '<div class="form-group">' +
                         '<h4>Deadline</h4>'+
-                        '<input class="form-control disabled" disabled="disabled" type="datetime-local" name="deadline'+ x +'">'+
+                        '<input class="form-control disabled" disabled="disabled" type="datetime-local" name="deadline'+ x +'" value="">'+
                         '</div>'+
                         '<div class="form-group"> ' +
                         '<h4>Commentaire</h4> ' +
@@ -93,21 +105,41 @@
         $('.disabled').attr('disabled',! this.checked)
     });
 
+    // Check if mini task are done to check the MainTask
     $('.second').on('click', function() {
-        var select = $(this).val();
-        var task = $('#main').val();
+        var task = $('.main').val();
+        var select = $('.mainTaskId').val();
+        var miniTasks = $('input[name=doneMini]:checked');
 
-        if(select == task) {
-            $('#main').prop('disabled', !$(this).is(':checked'));
+        if(select == task && miniTasks) {
+            $('.main').prop('disabled', !$(this).is(':checked'));
         }
+
     });
 
+    // change the form on the user type
     var chef = $("#chef").attr("value")
     $('#chef').click(function () {
         if (chef = "chef") {
             $('#chefButton').val("Ajouter");
             $('#chefButton').attr("class", "btn btn-success");
         }
+    })
+
+    //AJAX
+    $(document).ready(function () {
+        $('.taskEdit').click(function () {
+            var id = $(this).attr('value');
+
+            $.ajax({
+                type: 'post',
+                url: 'Ajax/select_task_edit_AJAX.php',
+                data: 'taskID=' + id,
+                success: function (data) {
+
+                }
+            })
+        })
     })
 
 

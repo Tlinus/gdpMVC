@@ -3,6 +3,7 @@
         <h1 class="text-center">Définition du Projet</h1>
     </div>
     <div class="panel-body">
+        <pre>{{ dump(session.Task) }}</pre>
         <div class="col-sm-12">
             <div class="row">
                 <div class="col-sm-6 text-center">
@@ -22,9 +23,10 @@
                         <h3>Ajout Tâche</h3>
                     </a>
                     <hr>
-                    <p><a data-toggle="modal" data-target="#seeTask" href="">Task 1</a></p>
-                    <hr>
-                    <p><a data-toggle="modal" data-target="#seeTask" href="">Task 2</a></p>
+                    {% for Task in session.Task %}
+                        <p><a class="taskEdit" data-toggle="modal" data-target="#seeTask" value="{{ Task.id }}" href="">{{ Task.intitule }}</a></p>
+                        <hr>
+                    {% endfor %}
                 </div>
             </div>
         </div>

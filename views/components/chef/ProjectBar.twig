@@ -4,13 +4,15 @@
 
             <div class="col-sm-12">
                 <span class="glyphicon glyphicon-user"></span>
-                <h5> FirstName </h5>
-                <h4> LastName </h4>
+                <h5>{{ session.user.utilisateur_prenom }}</h5>
+                <p>{{ session.user.utilisateur_id }}</p>
+                <h4>{{ session.user.utilisateur_nom }}</h4>
             </div>
             <div class="col-sm-12">
-                <a href="logout.php"><span class="glyphicon glyphicon-share"></span>Logout</a>
+                <a href="./logout.php"><span class="glyphicon glyphicon-share"></span>Logout</a>
+                <hr>
                     <form method="post">
-                    <input type="hidden"  name="addProject">
+                    <input type="hidden" value="" name="addProject">
                     <button class="btn btn-success" type="submit">Create Projet</button>
                     </form>
                 <hr>
